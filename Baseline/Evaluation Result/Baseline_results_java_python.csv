@@ -1,0 +1,1229 @@
+Input File,Input Language,Output Language,Translated Code,Result,Passed All Tests
+CHECK_WHETHER_TWO_STRINGS_ARE_ANAGRAM_OF_EACH_OTHER.py,java,python,"def f_filled(str1, str2):
+    n1 = len(str1)
+    n2 = len(str2)
+    if n1 != n2:
+        return False
+    str1 = sorted(str1)
+    str2 = sorted(str2)
+    for i in range(n1):
+        if str1[i] != str2[i]:
+            return False
+    return True","#Results: 10, 10
+",True
+LONGEST_PALINDROME_SUBSEQUENCE_SPACE.py,java,python,"def f_filled(s):
+    n = len(s)
+    a = [0] * n
+    for i in range(n - 1, -1, -1):
+        back_up = 0
+        for j in range(i, n):
+            if j == i:
+                a[j] = 1
+            elif s[i] == s[j]:
+                temp = a[j]
+                a[j] = back_up + 2
+                back_up = temp
+            else:
+                back_up = a[j]
+                a[j] = max(a[j - 1], a[j])
+    return a[n - 1]","#Results: 10, 10
+",True
+MOBILE_NUMERIC_KEYPAD_PROBLEM.py,java,python,"def f_filled(keypad, n):
+    if keypad is None or n <= 0:
+        return 0
+    if n == 1:
+        return 10
+    odd = [1] * 10
+    even = [0] * 10
+    useOdd = 0
+    totalCount = 0
+    for j in range(2, n + 1):
+        useOdd = 1 - useOdd
+        if useOdd == 1:
+            even[0] = odd[0] + odd[8]
+            even[1] = odd[1] + odd[2] + odd[4]
+            even[2] = odd[2] + odd[1] + odd[3] + odd[5]
+            even[3] = odd[3] + odd[2] + odd[6]
+            even[4] = odd[4] + odd[1] + odd[5] + odd[7]
+            even[5] = odd[5] + odd[2] + odd[4] + odd[8] + odd[6]
+            even[6] = odd[6] + odd[3] + odd[5] + odd[9]
+            even[7] = odd[7] + odd[4] + odd[8]
+            even[8] = odd[8] + odd[0] + odd[5] + odd[7] + odd[9]
+            even[9] = odd[9] + odd[6] + odd[8]
+        else:
+            odd[0] = even[0] + even[8]
+            odd[1] = even[1] + even[2] + even[4]
+            odd[2] = even[2] + even[1] + even[3] + even[5]
+            odd[3] = even[3] + even[2] + even[6]
+            odd[4] = even[4] + even[1] + even[5] + even[7]
+            odd[5] = even[5] + even[2] + even[4] + even[8] + even[6]
+            odd[6] = even[6] + even[3] + even[5] + even[9]
+            odd[7] = even[7] + even[4] + even[8]
+            odd[8] = even[8] + even[0] + even[5] + even[7] + even[9]
+            odd[9] = even[9] + even[6] + even[8]
+    totalCount = 0
+    if useOdd == 1:
+        for i in range(10):
+            totalCount += even[i]
+    else:
+        for i in range(10):
+            totalCount += odd[i]
+    return totalCount","#Results: 10, 10
+",True
+MARKOV_MATRIX.py,java,python,"def f_filled(m):
+    for i in range(len(m)):
+        sum = 0
+        for j in range(len(m[i])):
+            sum = sum + m[i][j]
+        if sum != 1:
+            return False
+    return True","#Results: 10, 10
+",True
+CHOCOLATE_DISTRIBUTION_PROBLEM.py,java,python,"def f_filled(arr, n, m):
+    if m == 0 or n == 0:
+        return 0
+    arr.sort()
+    if n < m:
+        return -1
+    min_diff = float('inf')
+    first = 0
+    last = 0
+    for i in range(n - m + 1):
+        diff = arr[i + m - 1] - arr[i]
+        if diff < min_diff:
+            min_diff = diff
+            first = i
+            last = i + m - 1
+    return arr[last] - arr[first]","#Results: 10, 10
+",True
+HYPERCUBE_GRAPH.py,java,python,"def f_filled(n):
+    if n == 1:
+        return 2
+    return 2 * f_filled(n - 1)","#Results: 10, 10
+",True
+COUNT_OPERATIONS_MAKE_STRINGAB_FREE.py,java,python,"def f_filled(s):
+    b_count = 0
+    res = 0
+    for i in range(len(s)):
+        if s[len(s) - i - 1] == 'a':
+            res = (res + b_count)
+            b_count = (b_count * 2)
+        else:
+            b_count += 1
+    return res","#Results: 10, 10
+",True
+SCHEDULE_JOBS_SERVER_GETS_EQUAL_LOAD.py,java,python,"def f_filled(a, b, n):
+    s = 0
+    for i in range(n):
+        s += (a[i] + b[i])
+    if n == 1:
+        return a[0] + b[0]
+    if s % n != 0:
+        return -1
+    x = s // n
+    for i in range(n):
+        if a[i] > x:
+            return -1
+        if i > 0:
+            a[i] += b[i - 1]
+            b[i - 1] = 0
+        if a[i] == x:
+            continue
+        y = a[i] + b[i]
+        if i + 1 < n:
+            y += b[i + 1]
+        if y == x:
+            a[i] = y
+            b[i] = 0
+            continue
+        if a[i] + b[i] == x:
+            a[i] += b[i]
+            b[i] = 0
+            continue
+        if i + 1 < n and a[i] + b[i + 1] == x:
+            a[i] += b[i + 1]
+            b[i + 1] = 0
+            continue
+        return -1
+    for i in range(n):
+        if b[i] != 0:
+            return -1
+    return x","#Results: 10, 10
+",True
+FIND_SUM_NODES_GIVEN_PERFECT_BINARY_TREE_1.py,java,python,"def f_filled(l):
+    leafNodeCount = 2 ** (l - 1)
+    sumLastLevel = 0
+    sumLastLevel = (leafNodeCount * (leafNodeCount + 1)) / 2
+    sum = sumLastLevel * l
+    return sum","#Results: 10, 10
+",True
+COUNT_NUMBER_OF_SOLUTIONS_OF_X2_1_MOD_P_IN_GIVEN_RANGE.py,java,python,"def f_filled(n, p):
+    ans = 0
+    for x in range(1, p):
+        if (x * x) % p == 1:
+            last = x + p * (n // p)
+            if last > n:
+                last -= p
+            ans += ((last - x) // p + 1)
+    return ans","#Results: 4, 10
+",False
+FUNCTION_COPY_STRING_ITERATIVE_RECURSIVE_1.py,java,python,"def f_filled(s1, s2, index):
+    s2[index] = s1[index]
+    if index == len(s1) - 1:
+        return
+    f_filled(s1, s2, index + 1)","#Results: 10, 10
+",True
+FIND_INDEX_OF_AN_EXTRA_ELEMENT_PRESENT_IN_ONE_SORTED_ARRAY_1.py,java,python,"def f_filled(arr1, arr2, n):
+    index = n
+    left, right = 0, n - 1
+    while left <= right:
+        mid = (left + right) // 2
+        if arr2[mid] == arr1[mid]:
+            left = mid + 1
+        else:
+            index = mid
+            right = mid - 1
+    return index","#Results: 10, 10
+",True
+MAXIMUM_SUM_PAIRS_SPECIFIC_DIFFERENCE_1.py,java,python,"def f_filled(arr, N, k):
+    maxSum = 0
+    arr.sort()
+    i = N - 1
+    while i > 0:
+        if arr[i] - arr[i - 1] < k:
+            maxSum += arr[i]
+            maxSum += arr[i - 1]
+            i -= 1
+        i -= 1
+    return maxSum","#Results: 6, 10
+",False
+STEINS_ALGORITHM_FOR_FINDING_GCD.py,java,python,"def f_filled(a, b):
+    if a == 0:
+        return b
+    if b == 0:
+        return a
+    k = 0
+    while ((a | b) & 1) == 0:
+        a >>= 1
+        b >>= 1
+        k += 1
+    while (a & 1) == 0:
+        a >>= 1
+    while b != 0:
+        while (b & 1) == 0:
+            b >>= 1
+        if a > b:
+            a, b = b, a
+        b = b - a
+    return a << k","#Results: 10, 10
+",True
+WILDCARD_CHARACTER_MATCHING.py,java,python,"def f_filled(first, second):
+    if len(first) == 0 and len(second) == 0:
+        return True
+    if len(first) > 1 and first[0] == '*' and len(second) == 0:
+        return False
+    if (len(first) > 1 and first[0] == '?') or (len(first) != 0 and len(second) != 0 and first[0] == second[0]):
+        return f_filled(first[1:], second[1:])
+    if len(first) > 0 and first[0] == '*':
+        return f_filled(first[1:], second) or f_filled(first, second[1:])
+    return False","#Results: 10, 10
+",True
+MINIMUM_ROTATIONS_REQUIRED_GET_STRING.py,java,python,"def f_filled(str):
+    tmp = str + str
+    n = len(str)
+    for i in range(1, n + 1):
+        substring = tmp[i:i + len(str)]
+        if str == substring:
+            return i
+    return n","#Results: 10, 10
+",True
+SORT_ARRAY_APPLYING_GIVEN_EQUATION.py,java,python,"def f_filled(arr, n, A, B, C):
+    for i in range(n):
+        arr[i] = A * arr[i] * arr[i] + B * arr[i] + C
+    index = -1
+    maximum = -999999
+    for i in range(n):
+        if maximum < arr[i]:
+            index = i
+            maximum = arr[i]
+    i, j = 0, n - 1
+    new_arr = [0] * n
+    k = 0
+    while i < index and j > index:
+        if arr[i] < arr[j]:
+            new_arr[k] = arr[i]
+            i += 1
+        else:
+            new_arr[k] = arr[j]
+            j -= 1
+        k += 1
+    while i < index:
+        new_arr[k] = arr[i]
+        i += 1
+        k += 1
+    while j > index:
+        new_arr[k] = arr[j]
+        j -= 1
+        k += 1
+    new_arr[n - 1] = maximum
+    for p in range(n):
+        arr[p] = new_arr[p]","#Results: 5, 10
+",False
+ANALYSIS_OF_ALGORITHMS_SET_2_ASYMPTOTIC_ANALYSIS.py,java,python,"def f_filled(arr, n, x):
+    for i in range(n):
+        if arr[i] == x:
+            return i
+    return -1","#Results: 10, 10
+",True
+UGLY_NUMBERS.py,java,python,"def f_filled(n):
+    ugly = [0] * n
+    i2 = i3 = i5 = 0
+    next_multiple_of_2 = 2
+    next_multiple_of_3 = 3
+    next_multiple_of_5 = 5
+    next_ugly_no = 1
+    ugly[0] = 1
+    for i in range(1, n):
+        next_ugly_no = min(next_multiple_of_2, min(next_multiple_of_3, next_multiple_of_5))
+        ugly[i] = next_ugly_no
+        if next_ugly_no == next_multiple_of_2:
+            i2 += 1
+            next_multiple_of_2 = ugly[i2] * 2
+        if next_ugly_no == next_multiple_of_3:
+            i3 += 1
+            next_multiple_of_3 = ugly[i3] * 3
+        if next_ugly_no == next_multiple_of_5:
+            i5 += 1
+            next_multiple_of_5 = ugly[i5] * 5
+    return next_ugly_no","#Results: 10, 10
+",True
+UNIQUE_CELLS_BINARY_MATRIX.py,java,python,"def f_filled(mat, n, m):
+    rowsum = [0] * n
+    colsum = [0] * m
+    for i in range(n):
+        for j in range(m):
+            if mat[i][j] != 0:
+                rowsum[i] += 1
+                colsum[j] += 1
+    uniquecount = 0
+    for i in range(n):
+        for j in range(m):
+            if mat[i][j] != 0 and rowsum[i] == 1 and colsum[j] == 1:
+                uniquecount += 1
+    return uniquecount","#Results: 10, 10
+",True
+FIND_A_ROTATION_WITH_MAXIMUM_HAMMING_DISTANCE.py,java,python,"def f_filled(arr, n):
+    brr = [0] * (2 * n + 1)
+    for i in range(n):
+        brr[i] = arr[i]
+    for i in range(n):
+        brr[n + i] = arr[i]
+    maxHam = 0
+    for i in range(1, n):
+        currHam = 0
+        for j, k in zip(range(i, i + n), range(n)):
+            if brr[j] != arr[k]:
+                currHam += 1
+        if currHam == n:
+            return n
+        maxHam = max(maxHam, currHam)
+    return maxHam","#Results: 7, 10
+",False
+BELL_NUMBERS_NUMBER_OF_WAYS_TO_PARTITION_A_SET.py,java,python,"def f_filled(n):
+    bell = [[0] * (n + 1) for _ in range(n + 1)]
+    bell[0][0] = 1
+    for i in range(1, n + 1):
+        bell[i][0] = bell[i - 1][i - 1]
+        for j in range(1, i + 1):
+            bell[i][j] = bell[i - 1][j - 1] + bell[i][j - 1]
+    return bell[n][0]","#Results: 10, 10
+",True
+MULTIPLY_LARGE_NUMBERS_REPRESENTED_AS_STRINGS.py,java,python,"def f_filled(num1, num2):
+    len1 = len(num1)
+    len2 = len(num2)
+    if len1 == 0 or len2 == 0:
+        return ""0""
+    
+    result = [0] * (len1 + len2)
+    i_n1 = 0
+    i_n2 = 0
+    
+    for i in range(len1 - 1, -1, -1):
+        carry = 0
+        n1 = ord(num1[i]) - ord('0')
+        i_n2 = 0
+        
+        for j in range(len2 - 1, -1, -1):
+            n2 = ord(num2[j]) - ord('0')
+            sum = n1 * n2 + result[i_n1 + i_n2] + carry
+            carry = sum // 10
+            result[i_n1 + i_n2] = sum % 10
+            i_n2 += 1
+        
+        if carry > 0:
+            result[i_n1 + i_n2] += carry
+        i_n1 += 1
+    
+    i = len(result) - 1
+    while i >= 0 and result[i] == 0:
+        i -= 1
+    
+    if i == -1:
+        return ""0""
+    
+    s = """"
+    while i >= 0:
+        s += str(result[i])
+        i -= 1
+    
+    return s","#Results: 6, 10
+",False
+FIND_DIFFERENCE_BETWEEN_SUMS_OF_TWO_DIAGONALS.py,java,python,"def f_filled(arr, n):
+    d1 = 0
+    d2 = 0
+    for i in range(n):
+        for j in range(n):
+            if i == j:
+                d1 += arr[i][j]
+            if i == n - j - 1:
+                d2 += arr[i][j]
+    return abs(d1 - d2)","#Results: 10, 10
+",True
+FIND_POSITION_GIVEN_NUMBER_AMONG_NUMBERS_MADE_4_7.py,java,python,"def f_filled(n: str) -> int:
+    k = 0
+    pos = 0
+    i = 0
+    while k != len(n):
+        if n[i] == '4':
+            pos = pos * 2 + 1
+        elif n[i] == '7':
+            pos = pos * 2 + 2
+        i += 1
+        k += 1
+    return pos","#Results: 10, 10
+",True
+SWAP_ALL_ODD_AND_EVEN_BITS.py,java,python,"def f_filled(x):
+    even_bits = x & 0xAAAAAAAA
+    odd_bits = x & 0x55555555
+    even_bits >>= 1
+    odd_bits <<= 1
+    return (even_bits | odd_bits)","#Results: 10, 10
+",True
+CONSTRUCT_LEXICOGRAPHICALLY_SMALLEST_PALINDROME.py,java,python,"def f_filled(str, len):
+    i = 0
+    j = len - 1
+    while i < j:
+        if str[i] == str[j] and str[i] != '*':
+            i += 1
+            j -= 1
+            continue
+        elif str[i] == str[j] and str[i] == '*':
+            str[i] = 'a'
+            str[j] = 'a'
+            i += 1
+            j -= 1
+            continue
+        elif str[i] == '*':
+            str[i] = str[j]
+            i += 1
+            j -= 1
+            continue
+        elif str[j] == '*':
+            str[j] = str[i]
+            i += 1
+            j -= 1
+            continue
+        return """"
+    return ''.join(str)","Not Possible
+Not Possible
+Not Possible
+Not Possible
+Not Possible
+Not Possible
+Not Possible
+Not Possible
+Not Possible
+#Results: 10, 10
+",True
+STACK_PERMUTATIONS_CHECK_IF_AN_ARRAY_IS_STACK_PERMUTATION_OF_OTHER.py,java,python,"from collections import deque
+
+def f_filled(ip, op, n):
+    input_queue = deque(ip)
+    output_queue = deque(op)
+    temp_stack = []
+
+    while input_queue:
+        ele = input_queue.popleft()
+        if ele == output_queue[0]:
+            output_queue.popleft()
+            while temp_stack and temp_stack[-1] == output_queue[0]:
+                temp_stack.pop()
+                output_queue.popleft()
+        else:
+            temp_stack.append(ele)
+
+    return not input_queue and not temp_stack","#Results: 9, 10
+",False
+LONGEST_SUBSEQUENCE_SUCH_THAT_DIFFERENCE_BETWEEN_ADJACENTS_IS_ONE.py,java,python,"def f_filled(arr, n):
+    dp = [1] * n
+    for i in range(1, n):
+        for j in range(i):
+            if (arr[i] == arr[j] + 1) or (arr[i] == arr[j] - 1):
+                dp[i] = max(dp[i], dp[j] + 1)
+    result = 1
+    for i in range(n):
+        if result < dp[i]:
+            result = dp[i]
+    return result","#Results: 10, 10
+",True
+MAXIMUM_PRODUCT_INCREASING_SUBSEQUENCE.py,java,python,"def f_filled(arr, n):
+    mpis = [0] * n
+    max_val = float('-inf')
+    for i in range(n):
+        mpis[i] = arr[i]
+    for i in range(1, n):
+        for j in range(i):
+            if arr[i] > arr[j] and mpis[i] < (mpis[j] * arr[i]):
+                mpis[i] = mpis[j] * arr[i]
+    for k in range(len(mpis)):
+        if mpis[k] > max_val:
+            max_val = mpis[k]
+    return max_val","#Results: 10, 10
+",True
+MAXIMUM_PRODUCT_OF_4_ADJACENT_ELEMENTS_IN_MATRIX.py,java,python,"def f_filled(arr, n):
+    max_product = 0
+    for i in range(n):
+        for j in range(n):
+            if (j - 3) >= 0:
+                result = arr[i][j] * arr[i][j - 1] * arr[i][j - 2] * arr[i][j - 3]
+                if max_product < result:
+                    max_product = result
+            if (i - 3) >= 0:
+                result = arr[i][j] * arr[i - 1][j] * arr[i - 2][j] * arr[i - 3][j]
+                if max_product < result:
+                    max_product = result
+            if (i - 3) >= 0 and (j - 3) >= 0:
+                result = arr[i][j] * arr[i - 1][j - 1] * arr[i - 2][j - 2] * arr[i - 3][j - 3]
+                if max_product < result:
+                    max_product = result
+    return max_product","#Results: 10, 10
+",True
+REMOVE_BRACKETS_ALGEBRAIC_STRING_CONTAINING_OPERATORS.py,java,python,"def f_filled(str):
+    len_str = len(str)
+    res = [''] * len_str
+    index = 0
+    i = 0
+    s = []
+    s.append(0)
+    while i < len_str:
+        if str[i] == '+':
+            if s[-1] == 1:
+                res[index] = '-'
+            if s[-1] == 0:
+                res[index] = '+'
+            index += 1
+        elif str[i] == '-':
+            if s[-1] == 1:
+                res[index] = '+'
+            elif s[-1] == 0:
+                res[index] = '-'
+            index += 1
+        elif str[i] == '(' and i > 0:
+            if str[i - 1] == '-':
+                x = 0 if s[-1] == 1 else 1
+                s.append(x)
+            elif str[i - 1] == '+':
+                s.append(s[-1])
+        elif str[i] == ')':
+            s.pop()
+        else:
+            res[index] = str[i]
+            index += 1
+        i += 1
+    return ''.join(res)","#Results: 0, 10
+",False
+TRIANGULAR_NUMBERS_1.py,java,python,"import math
+
+def f_filled(num):
+    if num < 0:
+        return False
+    c = (-2 * num)
+    b = 1
+    a = 1
+    d = (b * b) - (4 * a * c)
+    if d < 0:
+        return False
+    root1 = (-b + math.sqrt(d)) / (2 * a)
+    root2 = (-b - math.sqrt(d)) / (2 * a)
+    if root1 > 0 and math.floor(root1) == root1:
+        return True
+    if root2 > 0 and math.floor(root2) == root2:
+        return True
+    return False","#Results: 10, 10
+",True
+CONVERTING_ONE_STRING_USING_APPEND_DELETE_LAST_OPERATIONS.py,java,python,"def f_filled(str1, str2, k):
+    if (len(str1) + len(str2)) < k:
+        return True
+    commonLength = 0
+    for i in range(min(len(str1), len(str2))):
+        if str1[i] == str2[i]:
+            commonLength += 1
+        else:
+            break
+    if (k - len(str1) - len(str2) + 2 * commonLength) % 2 == 0:
+        return True
+    return False","#Results: 10, 10
+",True
+FIND_THREE_ELEMENT_FROM_DIFFERENT_THREE_ARRAYS_SUCH_THAT_THAT_A_B_C_K_1.py,java,python,"def f_filled(a1, a2, a3, n1, n2, n3, sum):
+    s = set()
+    for i in range(n1):
+        s.add(a1[i])
+    al = list(s)
+    for i in range(n2):
+        for j in range(n3):
+            if (sum - a2[i] - a3[j]) in al and al.index(sum - a2[i] - a3[j]) != len(al) - 1:
+                return True
+    return False","#Results: 10, 10
+",True
+HIGHWAY_BILLBOARD_PROBLEM.py,java,python,"def f_filled(m, x, revenue, n, t):
+    maxRev = [0] * (m + 1)
+    nxtbb = 0
+    for i in range(1, m + 1):
+        if nxtbb < n:
+            if x[nxtbb] != i:
+                maxRev[i] = maxRev[i - 1]
+            else:
+                if i <= t:
+                    maxRev[i] = max(maxRev[i - 1], revenue[nxtbb])
+                else:
+                    maxRev[i] = max(maxRev[i - t - 1] + revenue[nxtbb], maxRev[i - 1])
+                nxtbb += 1
+        else:
+            maxRev[i] = maxRev[i - 1]
+    return maxRev[m]","#Results: 10, 10
+",True
+COUNT_OF_OCCURRENCES_OF_A_101_PATTERN_IN_A_STRING.py,java,python,"def f_filled(str):
+    len_str = len(str)
+    one_seen = False
+    count = 0
+    for i in range(len_str):
+        get_char = str[i]
+        if get_char == '1' and one_seen == True:
+            if str[i - 1] == '0':
+                count += 1
+        if get_char == '1' and one_seen == False:
+            one_seen = True
+        if get_char != '0' and str[i] != '1':
+            one_seen = False
+    return count","#Results: 10, 10
+",True
+PRINT_WORDS_STRING_REVERSE_ORDER.py,java,python,"def f_filled(str):
+    i = len(str) - 1
+    end = i + 1
+    result = """"
+    while i >= 0:
+        if str[i] == ' ':
+            start = i + 1
+            while start != end:
+                result += str[start]
+                start += 1
+            result += ' '
+            end = i
+        i -= 1
+    start = 0
+    while start != end:
+        result += str[start]
+        start += 1
+    return result","#Results: 10, 10
+",True
+PRINT_MAXIMUM_SHORTEST_DISTANCE.py,java,python,"def f_filled(a, n, k):
+    b = {}
+    for i in range(n):
+        x = a[i]
+        d = min(1 + i, n - i)
+        if x not in b:
+            b[x] = d
+        else:
+            b[x] = min(d, b[x])
+    
+    ans = float('inf')
+    for i in range(n):
+        x = a[i]
+        if x != k - x and (k - x) in b:
+            ans = min(max(b[x], b[k - x]), ans)
+    
+    return ans","#Results: 1, 10
+",False
+MINIMUM_COST_CUT_BOARD_SQUARES.py,java,python,"def f_filled(X, Y, m, n):
+    res = 0
+    X.sort(reverse=True)
+    Y.sort(reverse=True)
+    hzntl = 1
+    vert = 1
+    i = 0
+    j = 0
+    while i < m and j < n:
+        if X[i] > Y[j]:
+            res += X[i] * vert
+            hzntl += 1
+            i += 1
+        else:
+            res += Y[j] * hzntl
+            vert += 1
+            j += 1
+    total = 0
+    while i < m:
+        total += X[i]
+        i += 1
+    res += total * vert
+    total = 0
+    while j < n:
+        total += Y[j]
+        j += 1
+    res += total * hzntl
+    return res","#Results: 10, 10
+",True
+DISTRIBUTING_M_ITEMS_CIRCLE_SIZE_N_STARTING_K_TH_POSITION.py,java,python,"def f_filled(n, m, k):
+    if m <= n - k + 1:
+        return m + k - 1
+    m = m - (n - k + 1)
+    return n if m % n == 0 else (m % n)","#Results: 10, 10
+",True
+DYNAMIC_PROGRAMMING_SET_17_PALINDROME_PARTITIONING_1.py,java,python,"def f_filled(str):
+    n = len(str)
+    C = [0] * n
+    P = [[False] * n for _ in range(n)]
+    
+    for i in range(n):
+        P[i][i] = True
+    
+    for L in range(2, n + 1):
+        for i in range(n - L + 1):
+            j = i + L - 1
+            if L == 2:
+                P[i][j] = (str[i] == str[j])
+            else:
+                P[i][j] = (str[i] == str[j]) and P[i + 1][j - 1]
+    
+    for i in range(n):
+        if P[0][i]:
+            C[i] = 0
+        else:
+            C[i] = float('inf')
+            for j in range(i):
+                if P[j + 1][i] and 1 + C[j] < C[i]:
+                    C[i] = 1 + C[j]
+    
+    return C[n - 1]","#Results: 10, 10
+",True
+MINIMUM_SWAPS_REQUIRED_BRING_ELEMENTS_LESS_EQUAL_K_TOGETHER.py,java,python,"def f_filled(arr, n, k):
+    count = 0
+    for i in range(n):
+        if arr[i] <= k:
+            count += 1
+    bad = 0
+    for i in range(count):
+        if arr[i] > k:
+            bad += 1
+    ans = bad
+    for i in range(n - count):
+        if arr[i] > k:
+            bad -= 1
+        if arr[i + count] > k:
+            bad += 1
+        ans = min(ans, bad)
+    return ans","#Results: 10, 10
+",True
+PROGRAM_TO_FIND_REMAINDER_WITHOUT_USING_MODULO_OR_OPERATOR_1.py,java,python,"def f_filled(num, divisor):
+    if divisor == 0:
+        raise ValueError(""Error: divisor can't be zero"")
+    if divisor < 0:
+        divisor = -divisor
+    if num < 0:
+        num = -num
+    i = 1
+    product = 0
+    while product <= num:
+        product = divisor * i
+        i += 1
+    return num - (product - divisor)","#Results: 10, 10
+",True
+MINIMUM_TIME_TO_FINISH_TASKS_WITHOUT_SKIPPING_TWO_CONSECUTIVE.py,java,python,"def f_filled(arr, n):
+    if n <= 0:
+        return 0
+    incl = arr[0]
+    excl = 0
+    for i in range(1, n):
+        incl_new = arr[i] + min(excl, incl)
+        excl_new = incl
+        incl = incl_new
+        excl = excl_new
+    return min(incl, excl)","#Results: 10, 10
+",True
+FIND_SUM_NON_REPEATING_DISTINCT_ELEMENTS_ARRAY.py,java,python,"def f_filled(arr, n):
+    sum = 0
+    s = set()
+    for i in range(n):
+        if arr[i] not in s:
+            sum += arr[i]
+            s.add(arr[i])
+    return sum","#Results: 10, 10
+",True
+PROGRAM_FIND_SMALLEST_DIFFERENCE_ANGLES_TWO_PARTS_GIVEN_CIRCLE.py,java,python,"def f_filled(arr, n):
+    l = 0
+    sum = 0
+    ans = 360
+    for i in range(n):
+        sum += arr[i]
+        while sum >= 180:
+            ans = min(ans, 2 * abs(180 - sum))
+            sum -= arr[l]
+            l += 1
+        ans = min(ans, 2 * abs(180 - sum))
+    return ans","#Results: 10, 10
+",True
+HARDY_RAMANUJAN_THEOREM.py,java,python,"import math
+
+def f_filled(n):
+    count = 0
+    if n % 2 == 0:
+        count += 1
+        while n % 2 == 0:
+            n = n // 2
+    for i in range(3, int(math.sqrt(n)) + 1, 2):
+        if n % i == 0:
+            count += 1
+            while n % i == 0:
+                n = n // i
+    if n > 2:
+        count += 1
+    return count","#Results: 10, 10
+",True
+GOLD_MINE_PROBLEM.py,java,python,"def f_filled(gold, m, n):
+    goldTable = [[0] * n for _ in range(m)]
+    for col in range(n - 1, -1, -1):
+        for row in range(m):
+            right = 0 if col == n - 1 else goldTable[row][col + 1]
+            right_up = 0 if row == 0 or col == n - 1 else goldTable[row - 1][col + 1]
+            right_down = 0 if row == m - 1 or col == n - 1 else goldTable[row + 1][col + 1]
+            goldTable[row][col] = gold[row][col] + max(right, max(right_up, right_down))
+    res = goldTable[0][0]
+    for i in range(1, m):
+        res = max(res, goldTable[i][0])
+    return res","#Results: 10, 10
+",True
+MAXIMUM_PROFIT_BY_BUYING_AND_SELLING_A_SHARE_AT_MOST_K_TIMES_1.py,java,python,"def f_filled(price, n, k):
+    profit = [[0] * (n + 1) for _ in range(k + 1)]
+    for i in range(1, k + 1):
+        prevDiff = float('-inf')
+        for j in range(1, n):
+            prevDiff = max(prevDiff, profit[i - 1][j - 1] - price[j - 1])
+            profit[i][j] = max(profit[i][j - 1], price[j] + prevDiff)
+    return profit[k][n - 1]","#Results: 10, 10
+",True
+MINIMUM_TIME_WRITE_CHARACTERS_USING_INSERT_DELETE_COPY_OPERATION.py,java,python,"def f_filled(N, insert, remove, copy):
+    if N == 0:
+        return 0
+    if N == 1:
+        return insert
+    dp = [0] * (N + 1)
+    for i in range(1, N + 1):
+        if i % 2 == 0:
+            dp[i] = min(dp[i - 1] + insert, dp[i // 2] + copy)
+        else:
+            dp[i] = min(dp[i - 1] + insert, dp[(i + 1) // 2] + copy + remove)
+    return dp[N]","#Results: 10, 10
+",True
+GOOGLE_CASE_GIVEN_SENTENCE.py,java,python,"def f_filled(s):
+    n = len(s)
+    s1 = """"
+    s1 += s[0].lower()
+    i = 1
+    while i < n:
+        if s[i] == ' ' and i < n:
+            s1 += "" "" + s[i + 1].lower()
+            i += 1
+        else:
+            s1 += s[i].upper()
+        i += 1
+    return s1","#Results: 10, 10
+",True
+PROGRAM_BINARY_DECIMAL_CONVERSION_1.py,java,python,"def f_filled(n):
+    num = n
+    dec_value = 0
+    base = 1
+    len_num = len(num)
+    for i in range(len_num - 1, -1, -1):
+        if num[i] == '1':
+            dec_value += base
+        base = base * 2
+    return dec_value","#Results: 10, 10
+",True
+COUNT_SUBARRAYS_EQUAL_NUMBER_1S_0S.py,java,python,"def f_filled(arr, n):
+    um = {}
+    curr_sum = 0
+    for i in range(n):
+        curr_sum += -1 if arr[i] == 0 else arr[i]
+        if curr_sum in um:
+            um[curr_sum] += 1
+        else:
+            um[curr_sum] = 1
+    count = 0
+    for value in um.values():
+        if value > 1:
+            count += (value * (value - 1)) // 2
+    if 0 in um:
+        count += um[0]
+    return count","#Results: 10, 10
+",True
+BINARY_SEARCH.py,java,python,"def f_filled(arr, l, r, x):
+    if r >= l:
+        mid = l + (r - l) // 2
+        if arr[mid] == x:
+            return mid
+        if arr[mid] > x:
+            return f_filled(arr, l, mid - 1, x)
+        return f_filled(arr, mid + 1, r, x)
+    return -1","#Results: 10, 10
+",True
+MAXIMUM_NUMBER_2X2_SQUARES_CAN_FIT_INSIDE_RIGHT_ISOSCELES_TRIANGLE.py,java,python,"def f_filled(base):
+    base = (base - 2)
+    base = base // 2
+    return base * (base + 1) // 2","#Results: 7, 10
+",False
+MEDIAN_OF_TWO_SORTED_ARRAYS.py,java,python,"def f_filled(ar1, ar2, n):
+    i = 0
+    j = 0
+    count = 0
+    m1 = -1
+    m2 = -1
+    for count in range(n + 1):
+        if i == n:
+            m1 = m2
+            m2 = ar2[0]
+            break
+        elif j == n:
+            m1 = m2
+            m2 = ar1[0]
+            break
+        if ar1[i] < ar2[j]:
+            m1 = m2
+            m2 = ar1[i]
+            i += 1
+        else:
+            m1 = m2
+            m2 = ar2[j]
+            j += 1
+    return (m1 + m2) // 2","#Results: 5, 10
+",False
+STEINS_ALGORITHM_FOR_FINDING_GCD_1.py,java,python,"def f_filled(a, b):
+    if a == b:
+        return a
+    if a == 0:
+        return b
+    if b == 0:
+        return a
+    if (~a & 1) == 1:
+        if (b & 1) == 1:
+            return f_filled(a >> 1, b)
+        else:
+            return f_filled(a >> 1, b >> 1) << 1
+    if (~b & 1) == 1:
+        return f_filled(a, b >> 1)
+    if a > b:
+        return f_filled((a - b) >> 1, b)
+    return f_filled((b - a) >> 1, a)","#Results: 10, 10
+",True
+FIND_EQUAL_POINT_STRING_BRACKETS.py,java,python,"def f_filled(str):
+    len_str = len(str)
+    open = [0] * (len_str + 1)
+    close = [0] * (len_str + 1)
+    index = -1
+    open[0] = 0
+    close[len_str] = 0
+    if str[0] == '(':
+        open[1] = 1
+    if str[len_str - 1] == ')':
+        close[len_str - 1] = 1
+    for i in range(1, len_str):
+        if str[i] == '(':
+            open[i + 1] = open[i] + 1
+        else:
+            open[i + 1] = open[i]
+    for i in range(len_str - 2, -1, -1):
+        if str[i] == ')':
+            close[i] = close[i + 1] + 1
+        else:
+            close[i] = close[i + 1]
+    if open[len_str] == 0:
+        return len_str
+    if close[0] == 0:
+        return 0
+    for i in range(len_str + 1):
+        if open[i] == close[i]:
+            index = i
+    return index","Traceback (most recent call last):
+  File ""/Users/parsayoussefpour/Desktop/MEng - Translator/Final_Milestone/eval_code.py"", line 83, in <module>
+    if f_filled(*parameters_set) == f_gold(*parameters_set):
+                                    ~~~~~~^^^^^^^^^^^^^^^^^
+  File ""/Users/parsayoussefpour/Desktop/MEng - Translator/Final_Milestone/eval_code.py"", line 25, in f_gold
+    close [ i ] = close [ i + 1 ] + 1
+                  ~~~~~~~~~~~~~~~~^~~
+TypeError: unsupported operand type(s) for +: 'NoneType' and 'int'
+",False
+LARGEST_SUBARRAY_WITH_EQUAL_NUMBER_OF_0S_AND_1S_1.py,java,python,"def f_filled(arr, n):
+    hM = {}
+    sum = 0
+    max_len = 0
+    ending_index = -1
+    start_index = 0
+    for i in range(n):
+        arr[i] = -1 if arr[i] == 0 else 1
+    for i in range(n):
+        sum += arr[i]
+        if sum == 0:
+            max_len = i + 1
+            ending_index = i
+        if (sum + n) in hM:
+            if max_len < i - hM[sum + n]:
+                max_len = i - hM[sum + n]
+                ending_index = i
+        else:
+            hM[sum + n] = i
+    for i in range(n):
+        arr[i] = 0 if arr[i] == -1 else 1
+    end = ending_index - max_len + 1
+    return max_len","0 to -1
+0 to -1
+0 to -1
+0 to -1
+0 to -1
+0 to -1
+0 to -1
+0 to -1
+0 to -1
+0 to -1
+#Results: 7, 10
+",False
+MAXIMUM_AVERAGE_SUM_PARTITION_ARRAY.py,java,python,"def f_filled(A, K):
+    n = len(A)
+    pre_sum = [0] * (n + 1)
+    pre_sum[0] = 0
+    for i in range(n):
+        pre_sum[i + 1] = pre_sum[i] + A[i]
+    dp = [0] * n
+    for i in range(n):
+        dp[i] = (pre_sum[n] - pre_sum[i]) / (n - i)
+    for k in range(K - 1):
+        for i in range(n):
+            for j in range(i + 1, n):
+                dp[i] = max(dp[i], (pre_sum[j] - pre_sum[i]) / (j - i) + dp[j])
+    return dp[0]","#Results: 9, 10
+",False
+COUNT_PALINDROME_SUB_STRINGS_STRING.py,java,python,"def f_filled(str, n):
+    dp = [[0] * n for _ in range(n)]
+    P = [[False] * n for _ in range(n)]
+    for i in range(n):
+        P[i][i] = True
+    for i in range(n - 1):
+        if str[i] == str[i + 1]:
+            P[i][i + 1] = True
+            dp[i][i + 1] = 1
+    for gap in range(2, n):
+        for i in range(n - gap):
+            j = gap + i
+            if str[i] == str[j] and P[i + 1][j - 1]:
+                P[i][j] = True
+            if P[i][j]:
+                dp[i][j] = dp[i][j - 1] + dp[i + 1][j] + 1 - dp[i + 1][j - 1]
+            else:
+                dp[i][j] = dp[i][j - 1] + dp[i + 1][j] - dp[i + 1][j - 1]
+    return dp[0][n - 1]","#Results: 10, 10
+",True
+FIND_ROTATION_COUNT_ROTATED_SORTED_ARRAY_1.py,java,python,"def f_filled(arr, low, high):
+    if high < low:
+        return 0
+    if high == low:
+        return low
+    mid = low + (high - low) // 2
+    if mid < high and arr[mid + 1] < arr[mid]:
+        return mid + 1
+    if mid > low and arr[mid] < arr[mid - 1]:
+        return mid
+    if arr[high] > arr[mid]:
+        return f_filled(arr, low, mid - 1)
+    return f_filled(arr, mid + 1, high)","#Results: 10, 10
+",True
+TILING_WITH_DOMINOES.py,java,python,"def f_filled(n):
+    A = [0] * (n + 1)
+    B = [0] * (n + 1)
+    A[0] = 1
+    A[1] = 0
+    B[0] = 0
+    B[1] = 1
+    for i in range(2, n + 1):
+        A[i] = A[i - 2] + 2 * B[i - 1]
+        B[i] = A[i - 1] + B[i - 2]
+    return A[n]","#Results: 10, 10
+",True
+FRIENDS_PAIRING_PROBLEM.py,java,python,"def f_filled(n):
+    dp = [0] * (n + 1)
+    for i in range(n + 1):
+        if i <= 2:
+            dp[i] = i
+        else:
+            dp[i] = dp[i - 1] + (i - 1) * dp[i - 2]
+    return dp[n]","#Results: 10, 10
+",True
+COUNT_POSSIBLE_WAYS_TO_CONSTRUCT_BUILDINGS.py,java,python,"def f_filled(N):
+    if N == 1:
+        return 4
+    countB = 1
+    countS = 1
+    for i in range(2, N + 1):
+        prev_countB = countB
+        prev_countS = countS
+        countS = prev_countB + prev_countS
+        countB = prev_countS
+    result = countS + countB
+    return result * result","#Results: 10, 10
+",True
+POLICEMEN_CATCH_THIEVES.py,java,python,"def f_filled(arr, n, k):
+    res = 0
+    thi = []
+    pol = []
+    for i in range(n):
+        if arr[i] == 'P':
+            pol.append(i)
+        elif arr[i] == 'T':
+            thi.append(i)
+    l, r = 0, 0
+    while l < len(thi) and r < len(pol):
+        if abs(thi[l] - pol[r]) <= k:
+            res += 1
+            l += 1
+            r += 1
+        elif thi[l] < pol[r]:
+            l += 1
+        else:
+            r += 1
+    return res","#Results: 10, 10
+",True
+TEMPLE_OFFERINGS.py,java,python,"def f_filled(n, templeHeight):
+    sum = 0
+    for i in range(n):
+        left, right = 0, 0
+        for j in range(i - 1, -1, -1):
+            if templeHeight[j] < templeHeight[j + 1]:
+                left += 1
+            else:
+                break
+        for j in range(i + 1, n):
+            if templeHeight[j] < templeHeight[j - 1]:
+                right += 1
+            else:
+                break
+        sum += max(right, left) + 1
+    return sum","#Results: 10, 10
+",True
+MINIMUM_SUM_SUBSEQUENCE_LEAST_ONE_EVERY_FOUR_CONSECUTIVE_ELEMENTS_PICKED.py,java,python,"def f_filled(arr, n):
+    dp = [0] * n
+    if n == 1:
+        return arr[0]
+    if n == 2:
+        return min(arr[0], arr[1])
+    if n == 3:
+        return min(arr[0], min(arr[1], arr[2]))
+    if n == 4:
+        return min(min(arr[0], arr[1]), min(arr[2], arr[3]))
+    dp[0] = arr[0]
+    dp[1] = arr[1]
+    dp[2] = arr[2]
+    dp[3] = arr[3]
+    for i in range(4, n):
+        dp[i] = arr[i] + min(min(dp[i - 1], dp[i - 2]), min(dp[i - 3], dp[i - 4]))
+    return min(min(dp[n - 1], dp[n - 2]), min(dp[n - 4], dp[n - 3]))","#Results: 10, 10
+",True
+TRIANGULAR_NUMBERS.py,java,python,"def f_filled(num):
+    if num < 0:
+        return False
+    sum = 0
+    n = 1
+    while sum <= num:
+        sum += n
+        if sum == num:
+            return True
+        n += 1
+    return False","#Results: 10, 10
+",True
+SWAP_TWO_NUMBERS_WITHOUT_USING_TEMPORARY_VARIABLE.py,java,python,"def f_filled(xp, yp):
+    xp[0] = xp[0] ^ yp[0]
+    yp[0] = xp[0] ^ yp[0]
+    xp[0] = xp[0] ^ yp[0]","#Results: 10, 10
+",True
+CHECK_IF_ALL_THE_ELEMENTS_CAN_BE_MADE_OF_SAME_PARITY_BY_INVERTING_ADJACENT_ELEMENTS.py,java,python,"def f_filled(a, n):
+    count_odd = 0
+    count_even = 0
+    for i in range(n):
+        if (a[i] & 1) == 1:
+            count_odd += 1
+        else:
+            count_even += 1
+    if count_odd % 2 == 1 and count_even % 2 == 1:
+        return False
+    else:
+        return True","#Results: 10, 10
+",True
+MAXIMUM_PROFIT_BY_BUYING_AND_SELLING_A_SHARE_AT_MOST_TWICE.py,java,python,"def f_filled(price, n):
+    profit = [0] * n
+    max_price = price[n - 1]
+    for i in range(n - 2, -1, -1):
+        if price[i] > max_price:
+            max_price = price[i]
+        profit[i] = max(profit[i + 1], max_price - price[i])
+    min_price = price[0]
+    for i in range(1, n):
+        if price[i] < min_price:
+            min_price = price[i]
+        profit[i] = max(profit[i - 1], profit[i] + (price[i] - min_price))
+    result = profit[n - 1]
+    return result","#Results: 10, 10
+",True
+HOW_TO_CHECK_IF_A_GIVEN_ARRAY_REPRESENTS_A_BINARY_HEAP.py,java,python,"def f_filled(arr, i, n):
+    if i > (n - 2) // 2:
+        return True
+    if (arr[i] >= arr[2 * i + 1] and 
+        arr[i] >= arr[2 * i + 2] and 
+        f_filled(arr, 2 * i + 1, n) and 
+        f_filled(arr, 2 * i + 2, n)):
+        return True
+    return False","#Results: 10, 10
+",True
+CHECK_GIVEN_SENTENCE_GIVEN_SET_SIMPLE_GRAMMER_RULES.py,java,python,"def f_filled(str):
+    len_str = len(str)
+    if str[0] < 'A' or str[0] > 'Z':
+        return False
+    if str[len_str - 1] != '.':
+        return False
+    prev_state = 0
+    curr_state = 0
+    index = 1
+    while index <= len_str:
+        if 'A' <= str[index] <= 'Z':
+            curr_state = 0
+        elif str[index] == ' ':
+            curr_state = 1
+        elif 'a' <= str[index] <= 'z':
+            curr_state = 2
+        elif str[index] == '.':
+            curr_state = 3
+        if prev_state == curr_state and curr_state != 2:
+            return False
+        if prev_state == 2 and curr_state == 0:
+            return False
+        if curr_state == 3 and prev_state != 1:
+            return (index + 1 == len_str)
+        index += 1
+        prev_state = curr_state
+    return False","#Results: 10, 10
+",True

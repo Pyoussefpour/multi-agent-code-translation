@@ -1,0 +1,2042 @@
+Input File,Input Language,Output Language,Translated Code,Result,Passed All Tests
+PROGRAM_BINARY_DECIMAL_CONVERSION_1.java,python,java,"public static int f_filled(String n) {
+    String num = n;
+    int dec_value = 0;
+    int base1 = 1;
+    int len1 = num.length();
+    for (int i = len1 - 1; i >= 0; i--) {
+        if (num.charAt(i) == '1') {
+            dec_value += base1;
+        }
+        base1 = base1 * 2;
+    }
+    return dec_value;
+}","#Results:10, 10
+",True
+SORT_ARRAY_APPLYING_GIVEN_EQUATION.java,python,java,"import java.util.Arrays;
+
+public class Solution {
+    public static void f_filled(int[] arr, int n, int A, int B, int C) {
+        for (int i = 0; i < n; i++) {
+            arr[i] = (A * arr[i] * arr[i] + B * arr[i] + C);
+        }
+        int index = Integer.MIN_VALUE;
+        int maximum = Integer.MIN_VALUE;
+        for (int i = 0; i < n; i++) {
+            if (maximum < arr[i]) {
+                index = i;
+                maximum = arr[i];
+            }
+        }
+        int i = 0, j = n - 1;
+        int[] new_arr = new int[n];
+        int k = 0;
+        while (i < index && j > index) {
+            if (arr[i] < arr[j]) {
+                new_arr[k] = arr[i];
+                k++;
+                i++;
+            } else {
+                new_arr[k] = arr[j];
+                k++;
+                j--;
+            }
+        }
+        while (i < index) {
+            new_arr[k] = arr[i];
+            k++;
+            i++;
+        }
+        while (j > index) {
+            new_arr[k] = arr[j];
+            k++;
+            j--;
+        }
+        new_arr[n - 1] = maximum;
+        for (i = 0; i < n; i++) {
+            arr[i] = new_arr[i];
+        }
+    }
+}","[ERROR] Failed to execute goal org.codehaus.mojo:exec-maven-plugin:3.5.0:java (default-cli) on project Eval: An exception occurred while executing the Java class. The specified mainClass doesn't contain a main method with appropriate signature.: symbolic reference class is not accessible: class SORT_ARRAY_APPLYING_GIVEN_EQUATION, from org.codehaus.mojo.exec.ExecJavaMojo (unnamed module @70456d25) -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+",False
+PRINT_WORDS_STRING_REVERSE_ORDER.java,python,java,"public static String f_filled(String str) {
+    int i = str.length() - 1;
+    int start = i + 1;
+    int end = start;
+    StringBuilder result = new StringBuilder();
+    while (i >= 0) {
+        if (str.charAt(i) == ' ') {
+            start = i + 1;
+            while (start != end) {
+                result.append(str.charAt(start));
+                start++;
+            }
+            result.append(' ');
+            end = i;
+        }
+        i--;
+    }
+    start = 0;
+    while (start != end) {
+        result.append(str.charAt(start));
+        start++;
+    }
+    return result.toString();
+}","#Results:10, 10
+",True
+MULTIPLY_LARGE_NUMBERS_REPRESENTED_AS_STRINGS.java,python,java,"public static String f_filled(String num1, String num2) {
+    int len1 = num1.length();
+    int len2 = num2.length();
+    if (len1 == 0 || len2 == 0) {
+        return ""0"";
+    }
+    int[] result = new int[len1 + len2];
+    int i_n1 = 0;
+    int i_n2 = 0;
+    for (int i = len1 - 1; i >= 0; i--) {
+        int carry = 0;
+        int n1 = num1.charAt(i) - '0';
+        i_n2 = 0;
+        for (int j = len2 - 1; j >= 0; j--) {
+            int n2 = num2.charAt(j) - '0';
+            int summ = n1 * n2 + result[i_n1 + i_n2] + carry;
+            carry = summ / 10;
+            result[i_n1 + i_n2] = summ % 10;
+            i_n2++;
+        }
+        if (carry > 0) {
+            result[i_n1 + i_n2] += carry;
+        }
+        i_n1++;
+    }
+    int i = result.length - 1;
+    while (i >= 0 && result[i] == 0) {
+        i--;
+    }
+    if (i == -1) {
+        return ""0"";
+    }
+    StringBuilder s = new StringBuilder();
+    while (i >= 0) {
+        s.append((char) (result[i] + '0'));
+        i--;
+    }
+    return s.toString();
+}","#Results:6, 10
+",False
+HYPERCUBE_GRAPH.java,python,java,"public int f_filled(int n) {
+    if (n == 1) {
+        return 2;
+    }
+    return 2 * f_filled(n - 1);
+}","[ERROR] COMPILATION ERROR : 
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/HYPERCUBE_GRAPH.java:[41,12] non-static method f_filled(int) cannot be referenced from a static context
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project Eval: Compilation failure
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/HYPERCUBE_GRAPH.java:[41,12] non-static method f_filled(int) cannot be referenced from a static context
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+",False
+BINARY_SEARCH.java,python,java,"public int f_filled(int[] arr, int l, int r, int x) {
+    if (r >= l) {
+        int mid = l + (r - l) / 2;
+        if (arr[mid] == x) {
+            return mid;
+        } else if (arr[mid] > x) {
+            return f_filled(arr, l, mid - 1, x);
+        } else {
+            return f_filled(arr, mid + 1, r, x);
+        }
+    } else {
+        return -1;
+    }
+}","[ERROR] COMPILATION ERROR : 
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/BINARY_SEARCH.java:[87,12] non-static method f_filled(int[],int,int,int) cannot be referenced from a static context
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project Eval: Compilation failure
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/BINARY_SEARCH.java:[87,12] non-static method f_filled(int[],int,int,int) cannot be referenced from a static context
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+",False
+DISTRIBUTING_M_ITEMS_CIRCLE_SIZE_N_STARTING_K_TH_POSITION.java,python,java,"public static int f_filled(int n, int m, int k) {
+    if (m <= n - k + 1) {
+        return m + k - 1;
+    }
+    m = m - (n - k + 1);
+    if (m % n == 0) {
+        return n;
+    } else {
+        return m % n;
+    }
+}","#Results:10, 10
+",True
+LONGEST_PALINDROME_SUBSEQUENCE_SPACE.java,python,java,"public static int f_filled(String s) {
+    int n = s.length();
+    int[] a = new int[n];
+    for (int i = n - 1; i >= 0; i--) {
+        int back_up = 0;
+        for (int j = i; j < n; j++) {
+            if (j == i) {
+                a[j] = 1;
+            } else if (s.charAt(i) == s.charAt(j)) {
+                int temp = a[j];
+                a[j] = back_up + 2;
+                back_up = temp;
+            } else {
+                back_up = a[j];
+                a[j] = Math.max(a[j - 1], a[j]);
+            }
+        }
+    }
+    return a[n - 1];
+}","#Results:10, 10
+",True
+FIND_THREE_ELEMENT_FROM_DIFFERENT_THREE_ARRAYS_SUCH_THAT_THAT_A_B_C_K_1.java,python,java,"import java.util.HashSet;
+import java.util.Set;
+
+public class Solution {
+    public static boolean f_filled(int[] a1, int[] a2, int[] a3, int n1, int n2, int n3, int sum) {
+        Set<Integer> s = new HashSet<>();
+        for (int i = 0; i < n1; i++) {
+            s.add(a1[i]);
+        }
+        for (int i = 0; i < n2; i++) {
+            for (int j = 0; j < n3; j++) {
+                if (s.contains(sum - a2[i] - a3[j])) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+}","#Results:10, 10
+",True
+FUNCTION_COPY_STRING_ITERATIVE_RECURSIVE_1.java,python,java,"public class Solution {
+    public static void f_filled(char[] s1, char[] s2, int index) {
+        s2[index] = s1[index];
+        if (index == s1.length - 1) {
+            return;
+        }
+        f_filled(s1, s2, index + 1);
+    }
+}","[ERROR] Failed to execute goal org.codehaus.mojo:exec-maven-plugin:3.5.0:java (default-cli) on project Eval: An exception occurred while executing the Java class. The specified mainClass doesn't contain a main method with appropriate signature.: symbolic reference class is not accessible: class FUNCTION_COPY_STRING_ITERATIVE_RECURSIVE_1, from org.codehaus.mojo.exec.ExecJavaMojo (unnamed module @283bdae0) -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+",False
+POLICEMEN_CATCH_THIEVES.java,python,java,"public int f_filled(char[] arr, int n, int k) {
+    int i = 0;
+    int l = 0;
+    int r = 0;
+    int res = 0;
+    List<Integer> thi = new ArrayList<>();
+    List<Integer> pol = new ArrayList<>();
+    while (i < n) {
+        if (arr[i] == 'P') {
+            pol.add(i);
+        } else if (arr[i] == 'T') {
+            thi.add(i);
+        }
+        i += 1;
+    }
+    while (l < thi.size() && r < pol.size()) {
+        if (Math.abs(thi.get(l) - pol.get(r)) <= k) {
+            res += 1;
+            l += 1;
+            r += 1;
+        } else if (thi.get(l) < pol.get(r)) {
+            l += 1;
+        } else {
+            r += 1;
+        }
+    }
+    return res;
+}","[ERROR] COMPILATION ERROR : 
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/POLICEMEN_CATCH_THIEVES.java:[103,12] non-static method f_filled(char[],int,int) cannot be referenced from a static context
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project Eval: Compilation failure
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/POLICEMEN_CATCH_THIEVES.java:[103,12] non-static method f_filled(char[],int,int) cannot be referenced from a static context
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+",False
+CHOCOLATE_DISTRIBUTION_PROBLEM.java,python,java,"import java.util.Arrays;
+
+public class Solution {
+    public static int f_filled(int[] arr, int n, int m) {
+        if (m == 0 || n == 0) {
+            return 0;
+        }
+        Arrays.sort(arr);
+        if (n < m) {
+            return -1;
+        }
+        int min_diff = Integer.MAX_VALUE;
+        int first = 0;
+        int last = 0;
+        int i = 0;
+        while (i + m - 1 < n) {
+            int diff = arr[i + m - 1] - arr[i];
+            if (diff < min_diff) {
+                min_diff = diff;
+                first = i;
+                last = i + m - 1;
+            }
+            i += 1;
+        }
+        return (arr[last] - arr[first]);
+    }
+}","#Results:10, 10
+",True
+SWAP_ALL_ODD_AND_EVEN_BITS.java,python,java,"public static int f_filled(int x) {
+    int even_bits = x & 0xAAAAAAAA;
+    int odd_bits = x & 0x55555555;
+    even_bits >>= 1;
+    odd_bits <<= 1;
+    return (even_bits | odd_bits);
+}","#Results:10, 10
+",True
+CHECK_WHETHER_TWO_STRINGS_ARE_ANAGRAM_OF_EACH_OTHER.java,python,java,"import java.util.Arrays;
+
+public class AnagramChecker {
+    public static int f_filled(String str1, String str2) {
+        int n1 = str1.length();
+        int n2 = str2.length();
+        if (n1 != n2) {
+            return 0;
+        }
+        char[] str1Array = str1.toCharArray();
+        char[] str2Array = str2.toCharArray();
+        Arrays.sort(str1Array);
+        Arrays.sort(str2Array);
+        for (int i = 0; i < n1; i++) {
+            if (str1Array[i] != str2Array[i]) {
+                return 0;
+            }
+        }
+        return 1;
+    }
+}","[ERROR] COMPILATION ERROR : 
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/CHECK_WHETHER_TWO_STRINGS_ARE_ANAGRAM_OF_EACH_OTHER.java:[71,46] incompatible types: char[] cannot be converted to java.lang.String
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project Eval: Compilation failure
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/CHECK_WHETHER_TWO_STRINGS_ARE_ANAGRAM_OF_EACH_OTHER.java:[71,46] incompatible types: char[] cannot be converted to java.lang.String
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+",False
+FRIENDS_PAIRING_PROBLEM.java,python,java,"public static int f_filled(int n) {
+    int[] dp = new int[n + 1];
+    for (int i = 0; i <= n; i++) {
+        if (i <= 2) {
+            dp[i] = i;
+        } else {
+            dp[i] = dp[i - 1] + (i - 1) * dp[i - 2];
+        }
+    }
+    return dp[n];
+}","#Results:10, 10
+",True
+GOOGLE_CASE_GIVEN_SENTENCE.java,python,java,"public static String f_filled(String s) {
+    int n = s.length();
+    String s1 = """";
+    s1 = s1 + Character.toLowerCase(s.charAt(0));
+    int i = 1;
+    while (i < n) {
+        if (s.charAt(i) == ' ' && i <= n) {
+            s1 = s1 + "" "" + Character.toLowerCase(s.charAt(i + 1));
+            i = i + 1;
+        } else {
+            s1 = s1 + Character.toUpperCase(s.charAt(i));
+        }
+        i = i + 1;
+    }
+    return s1;
+}","#Results:10, 10
+",True
+MAXIMUM_NUMBER_2X2_SQUARES_CAN_FIT_INSIDE_RIGHT_ISOSCELES_TRIANGLE.java,python,java,"public static double f_filled(double base) {
+    base = (base - 2);
+    base = base / 2;
+    return base * (base + 1) / 2;
+}","#Results:7, 10
+",False
+CONVERTING_ONE_STRING_USING_APPEND_DELETE_LAST_OPERATIONS.java,python,java,"public class Solution {
+    public static boolean f_filled(String str1, String str2, int k) {
+        if ((str1.length() + str2.length()) < k) {
+            return true;
+        }
+        int commonLength = 0;
+        for (int i = 0; i < Math.min(str1.length(), str2.length()); i++) {
+            if (str1.charAt(i) == str2.charAt(i)) {
+                commonLength++;
+            } else {
+                break;
+            }
+        }
+        if ((k - str1.length() - str2.length() + 2 * commonLength) % 2 == 0) {
+            return true;
+        }
+        return false;
+    }
+}","#Results:10, 10
+",True
+MAXIMUM_SUM_PAIRS_SPECIFIC_DIFFERENCE_1.java,python,java,"import java.util.Arrays;
+
+public class Solution {
+    public static int f_filled(int[] arr, int N, int k) {
+        int maxSum = 0;
+        Arrays.sort(arr);
+        int i = N - 1;
+        while (i >= 0) {
+            if (i > 0 && arr[i] - arr[i - 1] < k) {
+                maxSum += arr[i];
+                maxSum += arr[i - 1];
+                i -= 1;
+            }
+            i -= 1;
+        }
+        return maxSum;
+    }
+}","#Results:10, 10
+",True
+MEDIAN_OF_TWO_SORTED_ARRAYS.java,python,java,"public class MedianFinder {
+    public static double f_filled(int[] ar1, int[] ar2, int n) {
+        int i = 0;
+        int j = 0;
+        int m1 = -1;
+        int m2 = -1;
+        int count = 0;
+        while (count < n + 1) {
+            count++;
+            if (i == n) {
+                m1 = m2;
+                m2 = ar2[0];
+                break;
+            } else if (j == n) {
+                m1 = m2;
+                m2 = ar1[0];
+                break;
+            }
+            if (ar1[i] < ar2[j]) {
+                m1 = m2;
+                m2 = ar1[i];
+                i++;
+            } else {
+                m1 = m2;
+                m2 = ar2[j];
+                j++;
+            }
+        }
+        return (m1 + m2) / 2.0;
+    }
+}","#Results:5, 10
+",False
+HOW_TO_CHECK_IF_A_GIVEN_ARRAY_REPRESENTS_A_BINARY_HEAP.java,python,java,"public boolean f_filled(int[] arr, int i, int n) {
+    if (i > (n - 2) / 2) {
+        return true;
+    }
+    if (arr[i] >= arr[2 * i + 1] && arr[i] >= arr[2 * i + 2] && f_filled(arr, 2 * i + 1, n) && f_filled(arr, 2 * i + 2, n)) {
+        return true;
+    }
+    return false;
+}","[ERROR] COMPILATION ERROR : 
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/HOW_TO_CHECK_IF_A_GIVEN_ARRAY_REPRESENTS_A_BINARY_HEAP.java:[71,12] non-static method f_filled(int[],int,int) cannot be referenced from a static context
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project Eval: Compilation failure
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/HOW_TO_CHECK_IF_A_GIVEN_ARRAY_REPRESENTS_A_BINARY_HEAP.java:[71,12] non-static method f_filled(int[],int,int) cannot be referenced from a static context
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+",False
+MINIMUM_ROTATIONS_REQUIRED_GET_STRING.java,python,java,"public static int f_filled(String str) {
+    String tmp = str + str;
+    int n = str.length();
+    for (int i = 1; i <= n; i++) {
+        String substring = tmp.substring(i, i + n);
+        if (str.equals(substring)) {
+            return i;
+        }
+    }
+    return n;
+}","#Results:9, 10
+",False
+HARDY_RAMANUJAN_THEOREM.java,python,java,"import java.lang.Math;
+
+public class PrimeFactors {
+    public static int f_filled(int n) {
+        int count = 0;
+        if (n % 2 == 0) {
+            count = count + 1;
+            while (n % 2 == 0) {
+                n = n / 2;
+            }
+        }
+        int i = 3;
+        while (i <= (int) Math.sqrt(n)) {
+            if (n % i == 0) {
+                count = count + 1;
+                while (n % i == 0) {
+                    n = n / i;
+                }
+            }
+            i = i + 2;
+        }
+        if (n > 2) {
+            count = count + 1;
+        }
+        return count;
+    }
+}","#Results:10, 10
+",True
+ANALYSIS_OF_ALGORITHMS_SET_2_ASYMPTOTIC_ANALYSIS.java,python,java,"public static int f_filled(int[] arr, int n, int x) {
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == x) {
+            return i;
+        }
+    }
+    return -1;
+}","#Results:10, 10
+",True
+UGLY_NUMBERS.java,python,java,"public class UglyNumber {
+    public static int f_filled(int n) {
+        int[] ugly = new int[n];
+        ugly[0] = 1;
+        int i2 = 0, i3 = 0, i5 = 0;
+        int next_multiple_of_2 = 2;
+        int next_multiple_of_3 = 3;
+        int next_multiple_of_5 = 5;
+        
+        for (int l = 1; l < n; l++) {
+            ugly[l] = Math.min(next_multiple_of_2, Math.min(next_multiple_of_3, next_multiple_of_5));
+            if (ugly[l] == next_multiple_of_2) {
+                i2++;
+                next_multiple_of_2 = ugly[i2] * 2;
+            }
+            if (ugly[l] == next_multiple_of_3) {
+                i3++;
+                next_multiple_of_3 = ugly[i3] * 3;
+            }
+            if (ugly[l] == next_multiple_of_5) {
+                i5++;
+                next_multiple_of_5 = ugly[i5] * 5;
+            }
+        }
+        return ugly[n - 1];
+    }
+}","#Results:10, 10
+",True
+MAXIMUM_PRODUCT_OF_4_ADJACENT_ELEMENTS_IN_MATRIX.java,python,java,"public static int f_filled(int[][] arr, int n) {
+    int max = 0;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if ((j - 3) >= 0) {
+                int result = (arr[i][j] * arr[i][j - 1] * arr[i][j - 2] * arr[i][j - 3]);
+                if (max < result) {
+                    max = result;
+                }
+            }
+            if ((i - 3) >= 0) {
+                int result = (arr[i][j] * arr[i - 1][j] * arr[i - 2][j] * arr[i - 3][j]);
+                if (max < result) {
+                    max = result;
+                }
+            }
+            if ((i - 3) >= 0 && (j - 3) >= 0) {
+                int result = (arr[i][j] * arr[i - 1][j - 1] * arr[i - 2][j - 2] * arr[i - 3][j - 3]);
+                if (max < result) {
+                    max = result;
+                }
+            }
+        }
+    }
+    return max;
+}","#Results:10, 10
+",True
+HIGHWAY_BILLBOARD_PROBLEM.java,python,java,"public static int f_filled(int m, int[] x, int[] revenue, int n, int t) {
+    int[] maxRev = new int[m + 1];
+    int nxtbb = 0;
+    for (int i = 1; i <= m; i++) {
+        if (nxtbb < n) {
+            if (x[nxtbb] != i) {
+                maxRev[i] = maxRev[i - 1];
+            } else {
+                if (i <= t) {
+                    maxRev[i] = Math.max(maxRev[i - 1], revenue[nxtbb]);
+                } else {
+                    maxRev[i] = Math.max(maxRev[i - t - 1] + revenue[nxtbb], maxRev[i - 1]);
+                }
+                nxtbb++;
+            }
+        } else {
+            maxRev[i] = maxRev[i - 1];
+        }
+    }
+    return maxRev[m];
+}","#Results:10, 10
+",True
+TRIANGULAR_NUMBERS_1.java,python,java,"import java.lang.Math;
+
+public class Solution {
+    public static boolean f_filled(int num) {
+        if (num < 0) {
+            return false;
+        }
+        int c = (-2 * num);
+        int b = 1, a = 1;
+        int d = (b * b) - (4 * a * c);
+        if (d < 0) {
+            return false;
+        }
+        double root1 = (-b + Math.sqrt(d)) / (2 * a);
+        double root2 = (-b - Math.sqrt(d)) / (2 * a);
+        if (root1 > 0 && Math.floor(root1) == root1) {
+            return true;
+        }
+        if (root2 > 0 && Math.floor(root2) == root2) {
+            return true;
+        }
+        return false;
+    }
+}","#Results:10, 10
+",True
+LARGEST_SUBARRAY_WITH_EQUAL_NUMBER_OF_0S_AND_1S_1.java,python,java,"import java.util.HashMap;
+
+public class Solution {
+    public static int f_filled(int[] arr, int n) {
+        HashMap<Integer, Integer> hashMap = new HashMap<>();
+        int curr_sum = 0;
+        int max_len = 0;
+        int ending_index = -1;
+
+        for (int i = 0; i < n; i++) {
+            if (arr[i] == 0) {
+                arr[i] = -1;
+            } else {
+                arr[i] = 1;
+            }
+        }
+
+        for (int i = 0; i < n; i++) {
+            curr_sum += arr[i];
+
+            if (curr_sum == 0) {
+                max_len = i + 1;
+                ending_index = i;
+            }
+
+            if (hashMap.containsKey(curr_sum + n)) {
+                max_len = Math.max(max_len, i - hashMap.get(curr_sum + n));
+            } else {
+                hashMap.put(curr_sum, i);
+            }
+        }
+
+        for (int i = 0; i < n; i++) {
+            if (arr[i] == -1) {
+                arr[i] = 0;
+            } else {
+                arr[i] = 1;
+            }
+        }
+
+        System.out.print((ending_index - max_len + 1) + "" to "" + ending_index);
+        return max_len;
+    }
+}","0 to -10 to -1
+0 to -10 to -1
+0 to -19 to 18
+0 to -10 to -1
+0 to -10 to -1
+0 to -10 to -1
+0 to -10 to -1
+0 to -110 to 11
+0 to -17 to 8
+0 to -10 to -1
+#Results:7, 10
+",False
+SWAP_TWO_NUMBERS_WITHOUT_USING_TEMPORARY_VARIABLE.java,python,java,"public void f_filled(int[] xp, int[] yp) {
+    xp[0] = xp[0] ^ yp[0];
+    yp[0] = xp[0] ^ yp[0];
+    xp[0] = xp[0] ^ yp[0];
+}","[ERROR] COMPILATION ERROR : 
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/SWAP_TWO_NUMBERS_WITHOUT_USING_TEMPORARY_VARIABLE.java:[74,9] non-static method f_filled(int[],int[]) cannot be referenced from a static context
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project Eval: Compilation failure
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/SWAP_TWO_NUMBERS_WITHOUT_USING_TEMPORARY_VARIABLE.java:[74,9] non-static method f_filled(int[],int[]) cannot be referenced from a static context
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+",False
+MINIMUM_TIME_TO_FINISH_TASKS_WITHOUT_SKIPPING_TWO_CONSECUTIVE.java,python,java,"public static int f_filled(int[] arr, int n) {
+    if (n <= 0) return 0;
+    int incl = arr[0];
+    int excl = 0;
+    for (int i = 1; i < n; i++) {
+        int incl_new = arr[i] + Math.min(excl, incl);
+        int excl_new = incl;
+        incl = incl_new;
+        excl = excl_new;
+    }
+    return Math.min(incl, excl);
+}","#Results:10, 10
+",True
+COUNT_PALINDROME_SUB_STRINGS_STRING.java,python,java,"public int f_filled(String str, int n) {
+    int[][] dp = new int[n][n];
+    boolean[][] P = new boolean[n][n];
+    for (int i = 0; i < n; i++) {
+        P[i][i] = true;
+    }
+    for (int i = 0; i < n - 1; i++) {
+        if (str.charAt(i) == str.charAt(i + 1)) {
+            P[i][i + 1] = true;
+            dp[i][i + 1] = 1;
+        }
+    }
+    for (int gap = 2; gap < n; gap++) {
+        for (int i = 0; i < n - gap; i++) {
+            int j = gap + i;
+            if (str.charAt(i) == str.charAt(j) && P[i + 1][j - 1]) {
+                P[i][j] = true;
+            }
+            if (P[i][j]) {
+                dp[i][j] = dp[i][j - 1] + dp[i + 1][j] + 1 - dp[i + 1][j - 1];
+            } else {
+                dp[i][j] = dp[i][j - 1] + dp[i + 1][j] - dp[i + 1][j - 1];
+            }
+        }
+    }
+    return dp[0][n - 1];
+}","[ERROR] COMPILATION ERROR : 
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/COUNT_PALINDROME_SUB_STRINGS_STRING.java:[97,31] incompatible types: char[] cannot be converted to java.lang.String
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project Eval: Compilation failure
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/COUNT_PALINDROME_SUB_STRINGS_STRING.java:[97,31] incompatible types: char[] cannot be converted to java.lang.String
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+",False
+MAXIMUM_PROFIT_BY_BUYING_AND_SELLING_A_SHARE_AT_MOST_K_TIMES_1.java,python,java,"public int f_filled(int[] price, int n, int k) {
+    int[][] profit = new int[k + 1][n + 1];
+    for (int i = 1; i <= k; i++) {
+        int prevDiff = Integer.MIN_VALUE;
+        for (int j = 1; j < n; j++) {
+            prevDiff = Math.max(prevDiff, profit[i - 1][j - 1] - price[j - 1]);
+            profit[i][j] = Math.max(profit[i][j - 1], price[j] + prevDiff);
+        }
+    }
+    return profit[k][n - 1];
+}","[ERROR] COMPILATION ERROR : 
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/MAXIMUM_PROFIT_BY_BUYING_AND_SELLING_A_SHARE_AT_MOST_K_TIMES_1.java:[85,12] non-static method f_filled(int[],int,int) cannot be referenced from a static context
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project Eval: Compilation failure
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/MAXIMUM_PROFIT_BY_BUYING_AND_SELLING_A_SHARE_AT_MOST_K_TIMES_1.java:[85,12] non-static method f_filled(int[],int,int) cannot be referenced from a static context
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+",False
+MINIMUM_SUM_SUBSEQUENCE_LEAST_ONE_EVERY_FOUR_CONSECUTIVE_ELEMENTS_PICKED.java,python,java,"public int f_filled(int[] arr, int n) {
+    int[] dp = new int[n];
+    if (n == 1) {
+        return arr[0];
+    }
+    if (n == 2) {
+        return Math.min(arr[0], arr[1]);
+    }
+    if (n == 3) {
+        return Math.min(arr[0], Math.min(arr[1], arr[2]));
+    }
+    if (n == 4) {
+        return Math.min(Math.min(arr[0], arr[1]), Math.min(arr[2], arr[3]));
+    }
+    dp[0] = arr[0];
+    dp[1] = arr[1];
+    dp[2] = arr[2];
+    dp[3] = arr[3];
+    for (int i = 4; i < n; i++) {
+        dp[i] = arr[i] + Math.min(Math.min(dp[i - 1], dp[i - 2]), Math.min(dp[i - 3], dp[i - 4]));
+    }
+    return Math.min(Math.min(dp[n - 1], dp[n - 2]), Math.min(dp[n - 4], dp[n - 3]));
+}","[ERROR] COMPILATION ERROR : 
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/MINIMUM_SUM_SUBSEQUENCE_LEAST_ONE_EVERY_FOUR_CONSECUTIVE_ELEMENTS_PICKED.java:[80,12] non-static method f_filled(int[],int) cannot be referenced from a static context
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project Eval: Compilation failure
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/MINIMUM_SUM_SUBSEQUENCE_LEAST_ONE_EVERY_FOUR_CONSECUTIVE_ELEMENTS_PICKED.java:[80,12] non-static method f_filled(int[],int) cannot be referenced from a static context
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+",False
+MAXIMUM_AVERAGE_SUM_PARTITION_ARRAY.java,python,java,"public int f_filled(int[] A, int K) {
+    int n = A.length;
+    double[] pre_sum = new double[n + 1];
+    pre_sum[0] = 0;
+    for (int i = 0; i < n; i++) {
+        pre_sum[i + 1] = pre_sum[i] + A[i];
+    }
+    double[] dp = new double[n];
+    for (int i = 0; i < n; i++) {
+        dp[i] = (pre_sum[n] - pre_sum[i]) / (n - i);
+    }
+    for (int k = 0; k < K - 1; k++) {
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                dp[i] = Math.max(dp[i], (pre_sum[j] - pre_sum[i]) / (j - i) + dp[j]);
+            }
+        }
+    }
+    return (int) dp[0];
+}","[ERROR] COMPILATION ERROR : 
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/MAXIMUM_AVERAGE_SUM_PARTITION_ARRAY.java:[83,97] non-static method f_filled(int[],int) cannot be referenced from a static context
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project Eval: Compilation failure
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/MAXIMUM_AVERAGE_SUM_PARTITION_ARRAY.java:[83,97] non-static method f_filled(int[],int) cannot be referenced from a static context
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+",False
+CHECK_GIVEN_SENTENCE_GIVEN_SET_SIMPLE_GRAMMER_RULES.java,python,java,"public class SentenceChecker {
+    public static boolean f_filled(String string) {
+        int length = string.length();
+        if (string.charAt(0) < 'A' || string.charAt(0) > 'Z') {
+            return false;
+        }
+        if (string.charAt(length - 1) != '.') {
+            return false;
+        }
+        int prev_state = 0;
+        int curr_state = 0;
+        int index = 1;
+        while (index < length) {
+            char currentChar = string.charAt(index);
+            if (currentChar >= 'A' && currentChar <= 'Z') {
+                curr_state = 0;
+            } else if (currentChar == ' ') {
+                curr_state = 1;
+            } else if (currentChar >= 'a' && currentChar <= 'z') {
+                curr_state = 2;
+            } else if (currentChar == '.') {
+                curr_state = 3;
+            }
+            if (prev_state == curr_state && curr_state != 2) {
+                return false;
+            }
+            if (prev_state == 2 && curr_state == 0) {
+                return false;
+            }
+            if (curr_state == 3 && prev_state != 1) {
+                return true;
+            }
+            index++;
+            prev_state = curr_state;
+        }
+        return false;
+    }
+}","[ERROR] COMPILATION ERROR : 
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/CHECK_GIVEN_SENTENCE_GIVEN_SET_SIMPLE_GRAMMER_RULES.java:[82,46] incompatible types: char[] cannot be converted to java.lang.String
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project Eval: Compilation failure
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/CHECK_GIVEN_SENTENCE_GIVEN_SET_SIMPLE_GRAMMER_RULES.java:[82,46] incompatible types: char[] cannot be converted to java.lang.String
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+",False
+COUNT_POSSIBLE_WAYS_TO_CONSTRUCT_BUILDINGS.java,python,java,"public int f_filled(int N) {
+    if (N == 1) {
+        return 4;
+    }
+    int countB = 1;
+    int countS = 1;
+    for (int i = 2; i <= N; i++) {
+        int prev_countB = countB;
+        int prev_countS = countS;
+        countS = prev_countB + prev_countS;
+        countB = prev_countS;
+    }
+    int result = countS + countB;
+    return result * result;
+}","[ERROR] COMPILATION ERROR : 
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/COUNT_POSSIBLE_WAYS_TO_CONSTRUCT_BUILDINGS.java:[60,12] non-static method f_filled(int) cannot be referenced from a static context
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project Eval: Compilation failure
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/COUNT_POSSIBLE_WAYS_TO_CONSTRUCT_BUILDINGS.java:[60,12] non-static method f_filled(int) cannot be referenced from a static context
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+",False
+CONSTRUCT_LEXICOGRAPHICALLY_SMALLEST_PALINDROME.java,python,java,"public String f_filled(String string, int l) {
+    char[] strArray = string.toCharArray();
+    int i = -1;
+    int j = l;
+    while (i < j) {
+        i += 1;
+        j -= 1;
+        if (strArray[i] == strArray[j] && strArray[i] != '*') {
+            continue;
+        } else if (strArray[i] == strArray[j] && strArray[i] == '*') {
+            strArray[i] = 'a';
+            strArray[j] = 'a';
+            continue;
+        } else if (strArray[i] == '*') {
+            strArray[i] = strArray[j];
+            continue;
+        } else if (strArray[j] == '*') {
+            strArray[j] = strArray[i];
+            continue;
+        }
+        System.out.println(""Not Possible"");
+        return """";
+    }
+    return new String(strArray);
+}","[ERROR] COMPILATION ERROR : 
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/CONSTRUCT_LEXICOGRAPHICALLY_SMALLEST_PALINDROME.java:[91,31] incompatible types: char[] cannot be converted to java.lang.String
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project Eval: Compilation failure
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/CONSTRUCT_LEXICOGRAPHICALLY_SMALLEST_PALINDROME.java:[91,31] incompatible types: char[] cannot be converted to java.lang.String
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+",False
+STEINS_ALGORITHM_FOR_FINDING_GCD.java,python,java,"public static int f_filled(int a, int b) {
+    if (a == 0) {
+        return b;
+    }
+    if (b == 0) {
+        return a;
+    }
+    int k = 0;
+    while (((a | b) & 1) == 0) {
+        a = a >> 1;
+        b = b >> 1;
+        k = k + 1;
+    }
+    while ((a & 1) == 0) {
+        a = a >> 1;
+    }
+    while (b != 0) {
+        while ((b & 1) == 0) {
+            b = b >> 1;
+        }
+        if (a > b) {
+            int temp = a;
+            a = b;
+            b = temp;
+        }
+        b = (b - a);
+    }
+    return (a << k);
+}","#Results:10, 10
+",True
+REMOVE_BRACKETS_ALGEBRAIC_STRING_CONTAINING_OPERATORS.java,python,java,"public char[] f_filled(String Str) {
+    int Len = Str.length();
+    char[] res = new char[Len];
+    int index = 0;
+    int i = 0;
+    java.util.Stack<Integer> s = new java.util.Stack<>();
+    s.push(0);
+    while (i < Len) {
+        if (Str.charAt(i) == '+') {
+            if (s.peek() == 1) {
+                res[index] = '-';
+                index++;
+            }
+            if (s.peek() == 0) {
+                res[index] = '+';
+                index++;
+            }
+        } else if (Str.charAt(i) == '-') {
+            if (s.peek() == 1) {
+                res[index] = '+';
+                index++;
+            } else if (s.peek() == 0) {
+                res[index] = '-';
+                index++;
+            }
+        } else if (Str.charAt(i) == '(' && i > 0) {
+            if (Str.charAt(i - 1) == '-') {
+                int x = (s.peek() == 1) ? 0 : 1;
+                s.push(x);
+            } else if (Str.charAt(i - 1) == '+') {
+                s.push(s.peek());
+            }
+        } else if (Str.charAt(i) == ')') {
+            s.pop();
+        } else {
+            res[index] = Str.charAt(i);
+            index++;
+        }
+        i++;
+    }
+    return res;
+}","[ERROR] COMPILATION ERROR : 
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/REMOVE_BRACKETS_ALGEBRAIC_STRING_CONTAINING_OPERATORS.java:[101,12] non-static method f_filled(java.lang.String) cannot be referenced from a static context
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project Eval: Compilation failure
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/REMOVE_BRACKETS_ALGEBRAIC_STRING_CONTAINING_OPERATORS.java:[101,12] non-static method f_filled(java.lang.String) cannot be referenced from a static context
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+",False
+STEINS_ALGORITHM_FOR_FINDING_GCD_1.java,python,java,"public static int f_filled(int a, int b) {
+    if (a == b) {
+        return a;
+    }
+    if (a == 0) {
+        return b;
+    }
+    if (b == 0) {
+        return a;
+    }
+    if ((~a & 1) == 1) {
+        if ((b & 1) == 1) {
+            return f_filled(a >> 1, b);
+        } else {
+            return (f_filled(a >> 1, b >> 1) << 1);
+        }
+    }
+    if ((~b & 1) == 1) {
+        return f_filled(a, b >> 1);
+    }
+    if (a > b) {
+        return f_filled((a - b) >> 1, b);
+    }
+    return f_filled((b - a) >> 1, a);
+}","#Results:10, 10
+",True
+TRIANGULAR_NUMBERS.java,python,java,"public class Solution {
+    public static boolean f_filled(int num) {
+        if (num < 0) {
+            return false;
+        }
+        int sum = 0, n = 1;
+        while (sum <= num) {
+            sum = sum + n;
+            if (sum == num) {
+                return true;
+            }
+            n += 1;
+        }
+        return false;
+    }
+}","#Results:10, 10
+",True
+COUNT_NUMBER_OF_SOLUTIONS_OF_X2_1_MOD_P_IN_GIVEN_RANGE.java,python,java,"public static int f_filled(int n, int p) {
+    int ans = 0;
+    for (int x = 1; x < p; x++) {
+        if ((x * x) % p == 1) {
+            int last = x + p * (n / p);
+            if (last > n) {
+                last -= p;
+            }
+            ans += ((last - x) / p + 1);
+        }
+    }
+    return ans;
+}","#Results:10, 10
+",True
+COUNT_SUBARRAYS_EQUAL_NUMBER_1S_0S.java,python,java,"import java.util.HashMap;
+
+public class Solution {
+    public static int f_filled(int[] arr, int n) {
+        HashMap<Integer, Integer> um = new HashMap<>();
+        int curr_sum = 0;
+        for (int i = 0; i < n; i++) {
+            curr_sum += (arr[i] == 0 ? -1 : arr[i]);
+            um.put(curr_sum, um.getOrDefault(curr_sum, 0) + 1);
+        }
+        int count = 0;
+        for (int value : um.values()) {
+            if (value > 1) {
+                count += (value * (value - 1)) / 2;
+            }
+        }
+        if (um.containsKey(0)) {
+            count += um.get(0);
+        }
+        return count;
+    }
+}","#Results:10, 10
+",True
+MINIMUM_SWAPS_REQUIRED_BRING_ELEMENTS_LESS_EQUAL_K_TOGETHER.java,python,java,"public int f_filled(int[] arr, int n, int k) {
+    int count = 0;
+    for (int i = 0; i < n; i++) {
+        if (arr[i] <= k) {
+            count = count + 1;
+        }
+    }
+    int bad = 0;
+    for (int i = 0; i < count; i++) {
+        if (arr[i] > k) {
+            bad = bad + 1;
+        }
+    }
+    int ans = bad;
+    int j = count;
+    for (int i = 0; i < n; i++) {
+        if (j == n) {
+            break;
+        }
+        if (arr[i] > k) {
+            bad = bad - 1;
+        }
+        if (arr[j] > k) {
+            bad = bad + 1;
+        }
+        ans = Math.min(ans, bad);
+        j = j + 1;
+    }
+    return ans;
+}","[ERROR] COMPILATION ERROR : 
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/MINIMUM_SWAPS_REQUIRED_BRING_ELEMENTS_LESS_EQUAL_K_TOGETHER.java:[102,12] non-static method f_filled(int[],int,int) cannot be referenced from a static context
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project Eval: Compilation failure
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/MINIMUM_SWAPS_REQUIRED_BRING_ELEMENTS_LESS_EQUAL_K_TOGETHER.java:[102,12] non-static method f_filled(int[],int,int) cannot be referenced from a static context
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+",False
+TILING_WITH_DOMINOES.java,python,java,"public int f_filled(int n) {
+    int[] A = new int[n + 1];
+    int[] B = new int[n + 1];
+    A[0] = 1;
+    A[1] = 0;
+    B[0] = 0;
+    B[1] = 1;
+    for (int i = 2; i <= n; i++) {
+        A[i] = A[i - 2] + 2 * B[i - 1];
+        B[i] = A[i - 1] + B[i - 2];
+    }
+    return A[n];
+}","[ERROR] COMPILATION ERROR : 
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/TILING_WITH_DOMINOES.java:[59,12] non-static method f_filled(int) cannot be referenced from a static context
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project Eval: Compilation failure
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/TILING_WITH_DOMINOES.java:[59,12] non-static method f_filled(int) cannot be referenced from a static context
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+",False
+SCHEDULE_JOBS_SERVER_GETS_EQUAL_LOAD.java,python,java,"public int f_filled(int[] a, int[] b, int n) {
+    int s = 0;
+    for (int i = 0; i < n; i++) {
+        s += a[i] + b[i];
+    }
+    if (n == 1) {
+        return a[0] + b[0];
+    }
+    if (s % n != 0) {
+        return -1;
+    }
+    int x = s / n;
+    for (int i = 0; i < n; i++) {
+        if (a[i] > x) {
+            return -1;
+        }
+        if (i > 0) {
+            a[i] += b[i - 1];
+            b[i - 1] = 0;
+        }
+        if (a[i] == x) {
+            continue;
+        }
+        int y = a[i] + b[i];
+        if (i + 1 < n) {
+            y += b[i + 1];
+        }
+        if (y == x) {
+            a[i] = y;
+            b[i] = 0;
+            if (i + 1 < n) b[i + 1] = 0;
+            continue;
+        }
+        if (a[i] + b[i] == x) {
+            a[i] += b[i];
+            b[i] = 0;
+            continue;
+        }
+        if (i + 1 < n && a[i] + b[i + 1] == x) {
+            a[i] += b[i + 1];
+            b[i + 1] = 0;
+            continue;
+        }
+        return -1;
+    }
+    for (int i = 0; i < n; i++) {
+        if (b[i] != 0) {
+            return -1;
+        }
+    }
+    return x;
+}","[ERROR] COMPILATION ERROR : 
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/SCHEDULE_JOBS_SERVER_GETS_EQUAL_LOAD.java:[147,12] non-static method f_filled(int[],int[],int) cannot be referenced from a static context
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project Eval: Compilation failure
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/SCHEDULE_JOBS_SERVER_GETS_EQUAL_LOAD.java:[147,12] non-static method f_filled(int[],int[],int) cannot be referenced from a static context
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+",False
+MINIMUM_COST_CUT_BOARD_SQUARES.java,python,java,"import java.util.Arrays;
+
+public class Solution {
+    public static int f_filled(int[] X, int[] Y, int m, int n) {
+        int res = 0;
+        Arrays.sort(X);
+        Arrays.sort(Y);
+        int hzntl = 1, vert = 1;
+        int i = m - 1, j = n - 1;
+        while (i >= 0 && j >= 0) {
+            if (X[i] > Y[j]) {
+                res += X[i] * vert;
+                hzntl += 1;
+                i -= 1;
+            } else {
+                res += Y[j] * hzntl;
+                vert += 1;
+                j -= 1;
+            }
+        }
+        int total = 0;
+        while (i >= 0) {
+            total += X[i];
+            i -= 1;
+        }
+        res += total * vert;
+        total = 0;
+        while (j >= 0) {
+            total += Y[j];
+            j -= 1;
+        }
+        res += total * hzntl;
+        return res;
+    }
+}","[ERROR] COMPILATION ERROR : 
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/MINIMUM_COST_CUT_BOARD_SQUARES.java:[122,31] incompatible types: java.lang.Integer[] cannot be converted to int[]
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project Eval: Compilation failure
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/MINIMUM_COST_CUT_BOARD_SQUARES.java:[122,31] incompatible types: java.lang.Integer[] cannot be converted to int[]
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+",False
+COUNT_OPERATIONS_MAKE_STRINGAB_FREE.java,python,java,"public int f_filled(String s) {
+    int b_count = 0;
+    int res = 0;
+    for (int i = 0; i < s.length(); i++) {
+        if (s.charAt(~i + s.length()) == 'a') {
+            res = (res + b_count);
+            b_count = (b_count * 2);
+        } else {
+            b_count += 1;
+        }
+    }
+    return res;
+}","[ERROR] COMPILATION ERROR : 
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/COUNT_OPERATIONS_MAKE_STRINGAB_FREE.java:[60,31] incompatible types: char[] cannot be converted to java.lang.String
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project Eval: Compilation failure
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/COUNT_OPERATIONS_MAKE_STRINGAB_FREE.java:[60,31] incompatible types: char[] cannot be converted to java.lang.String
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+",False
+MAXIMUM_PRODUCT_INCREASING_SUBSEQUENCE.java,python,java,"public static int f_filled(int[] arr, int n) {
+    int[] mpis = new int[n];
+    for (int i = 0; i < n; i++) {
+        mpis[i] = arr[i];
+    }
+    for (int i = 1; i < n; i++) {
+        for (int j = 0; j < i; j++) {
+            if (arr[i] > arr[j] && mpis[i] < (mpis[j] * arr[i])) {
+                mpis[i] = mpis[j] * arr[i];
+            }
+        }
+    }
+    int max = mpis[0];
+    for (int i = 1; i < n; i++) {
+        if (mpis[i] > max) {
+            max = mpis[i];
+        }
+    }
+    return max;
+}","#Results:10, 10
+",True
+CHECK_IF_ALL_THE_ELEMENTS_CAN_BE_MADE_OF_SAME_PARITY_BY_INVERTING_ADJACENT_ELEMENTS.java,python,java,"public class Solution {
+    public static boolean f_filled(int[] a, int n) {
+        int count_odd = 0;
+        int count_even = 0;
+        for (int i = 0; i < n; i++) {
+            if ((a[i] & 1) == 1) {
+                count_odd += 1;
+            } else {
+                count_even += 1;
+            }
+        }
+        if ((count_odd % 2 == 1) && (count_even % 2 == 1)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+}","#Results:10, 10
+",True
+LONGEST_SUBSEQUENCE_SUCH_THAT_DIFFERENCE_BETWEEN_ADJACENTS_IS_ONE.java,python,java,"public int f_filled(int[] arr, int n) {
+    int[] dp = new int[n];
+    for (int i = 0; i < n; i++) {
+        dp[i] = 1;
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < i; j++) {
+            if ((arr[i] == arr[j] + 1) || (arr[i] == arr[j] - 1)) {
+                dp[i] = Math.max(dp[i], dp[j] + 1);
+            }
+        }
+    }
+    int result = 1;
+    for (int i = 0; i < n; i++) {
+        if (result < dp[i]) {
+            result = dp[i];
+        }
+    }
+    return result;
+}","[ERROR] COMPILATION ERROR : 
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/LONGEST_SUBSEQUENCE_SUCH_THAT_DIFFERENCE_BETWEEN_ADJACENTS_IS_ONE.java:[82,12] non-static method f_filled(int[],int) cannot be referenced from a static context
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project Eval: Compilation failure
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/LONGEST_SUBSEQUENCE_SUCH_THAT_DIFFERENCE_BETWEEN_ADJACENTS_IS_ONE.java:[82,12] non-static method f_filled(int[],int) cannot be referenced from a static context
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+",False
+MAXIMUM_PROFIT_BY_BUYING_AND_SELLING_A_SHARE_AT_MOST_TWICE.java,python,java,"public int f_filled(int[] price, int n) {
+    int[] profit = new int[n];
+    int max_price = price[n - 1];
+    for (int i = n - 2; i >= 0; i--) {
+        if (price[i] > max_price) {
+            max_price = price[i];
+        }
+        profit[i] = Math.max(profit[i + 1], max_price - price[i]);
+    }
+    int min_price = price[0];
+    for (int i = 1; i < n; i++) {
+        if (price[i] < min_price) {
+            min_price = price[i];
+        }
+        profit[i] = Math.max(profit[i - 1], profit[i] + (price[i] - min_price));
+    }
+    int result = profit[n - 1];
+    return result;
+}","[ERROR] COMPILATION ERROR : 
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/MAXIMUM_PROFIT_BY_BUYING_AND_SELLING_A_SHARE_AT_MOST_TWICE.java:[83,12] non-static method f_filled(int[],int) cannot be referenced from a static context
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project Eval: Compilation failure
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/MAXIMUM_PROFIT_BY_BUYING_AND_SELLING_A_SHARE_AT_MOST_TWICE.java:[83,12] non-static method f_filled(int[],int) cannot be referenced from a static context
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+",False
+GOLD_MINE_PROBLEM.java,python,java,"public static int f_filled(int[][] gold, int m, int n) {
+    int[][] goldTable = new int[m][n];
+    for (int col = n - 1; col >= 0; col--) {
+        for (int row = 0; row < m; row++) {
+            int right = (col == n - 1) ? 0 : goldTable[row][col + 1];
+            int right_up = (row == 0 || col == n - 1) ? 0 : goldTable[row - 1][col + 1];
+            int right_down = (row == m - 1 || col == n - 1) ? 0 : goldTable[row + 1][col + 1];
+            goldTable[row][col] = gold[row][col] + Math.max(right, Math.max(right_up, right_down));
+        }
+    }
+    int res = goldTable[0][0];
+    for (int i = 1; i < m; i++) {
+        res = Math.max(res, goldTable[i][0]);
+    }
+    return res;
+}","#Results:10, 10
+",True
+DYNAMIC_PROGRAMMING_SET_17_PALINDROME_PARTITIONING_1.java,python,java,"import java.util.Arrays;
+
+public class PalindromePartitioning {
+    public static int f_filled(String str1) {
+        int n = str1.length();
+        int[] C = new int[n + 1];
+        boolean[][] P = new boolean[n + 1][n + 1];
+
+        for (int i = 0; i < n; i++) {
+            P[i][i] = true;
+        }
+
+        for (int L = 2; L <= n; L++) {
+            for (int i = 0; i < n - L + 1; i++) {
+                int j = i + L - 1;
+                if (L == 2) {
+                    P[i][j] = (str1.charAt(i) == str1.charAt(j));
+                } else {
+                    P[i][j] = (str1.charAt(i) == str1.charAt(j)) && P[i + 1][j - 1];
+                }
+            }
+        }
+
+        for (int i = 0; i < n; i++) {
+            if (P[0][i]) {
+                C[i] = 0;
+            } else {
+                C[i] = Integer.MAX_VALUE;
+                for (int j = 0; j < i; j++) {
+                    if (P[j + 1][i] && 1 + C[j] < C[i]) {
+                        C[i] = 1 + C[j];
+                    }
+                }
+            }
+        }
+
+        return C[n - 1];
+    }
+}","#Results:10, 10
+",True
+TEMPLE_OFFERINGS.java,python,java,"public int f_filled(int n, int[] templeHeight) {
+    int sum = 0;
+    for (int i = 0; i < n; i++) {
+        int left = 0;
+        int right = 0;
+        for (int j = i - 1; j >= 0; j--) {
+            if (templeHeight[j] < templeHeight[j + 1]) {
+                left += 1;
+            } else {
+                break;
+            }
+        }
+        for (int j = i + 1; j < n; j++) {
+            if (templeHeight[j] < templeHeight[j - 1]) {
+                right += 1;
+            } else {
+                break;
+            }
+        }
+        sum += Math.max(right, left) + 1;
+    }
+    return sum;
+}","[ERROR] COMPILATION ERROR : 
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/TEMPLE_OFFERINGS.java:[87,12] non-static method f_filled(int,int[]) cannot be referenced from a static context
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project Eval: Compilation failure
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/TEMPLE_OFFERINGS.java:[87,12] non-static method f_filled(int,int[]) cannot be referenced from a static context
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+",False
+COUNT_OF_OCCURRENCES_OF_A_101_PATTERN_IN_A_STRING.java,python,java,"public int f_filled(String s) {
+    int length = s.length();
+    boolean oneSeen = false;
+    int count = 0;
+    for (int i = 0; i < length; i++) {
+        if (s.charAt(i) == '1' && oneSeen) {
+            if (s.charAt(i - 1) == '0') {
+                count += 1;
+            }
+        }
+        if (s.charAt(i) == '1' && !oneSeen) {
+            oneSeen = true;
+        }
+        if (s.charAt(i) != '0' && s.charAt(i) != '1') {
+            oneSeen = false;
+        }
+    }
+    return count;
+}","[ERROR] COMPILATION ERROR : 
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/COUNT_OF_OCCURRENCES_OF_A_101_PATTERN_IN_A_STRING.java:[66,12] non-static method f_filled(java.lang.String) cannot be referenced from a static context
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project Eval: Compilation failure
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/COUNT_OF_OCCURRENCES_OF_A_101_PATTERN_IN_A_STRING.java:[66,12] non-static method f_filled(java.lang.String) cannot be referenced from a static context
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+",False
+WILDCARD_CHARACTER_MATCHING.java,python,java,"public boolean f_filled(String first, String second) {
+    if (first.length() == 0 && second.length() == 0) {
+        return true;
+    }
+    if (first.length() > 1 && first.charAt(0) == '*' && second.length() == 0) {
+        return false;
+    }
+    if ((first.length() > 1 && first.charAt(0) == '?') || (first.length() != 0 && second.length() != 0 && first.charAt(0) == second.charAt(0))) {
+        return f_filled(first.substring(1), second.substring(1));
+    }
+    if (first.length() != 0 && first.charAt(0) == '*') {
+        return f_filled(first.substring(1), second) || f_filled(first, second.substring(1));
+    }
+    return false;
+}","[ERROR] COMPILATION ERROR : 
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/WILDCARD_CHARACTER_MATCHING.java:[64,12] non-static method f_filled(java.lang.String,java.lang.String) cannot be referenced from a static context
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project Eval: Compilation failure
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/WILDCARD_CHARACTER_MATCHING.java:[64,12] non-static method f_filled(java.lang.String,java.lang.String) cannot be referenced from a static context
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+",False
+PRINT_MAXIMUM_SHORTEST_DISTANCE.java,python,java,"import java.util.HashMap;
+import java.util.Map;
+
+public class Solution {
+    public static int f_filled(int[] a, int n, int k) {
+        Map<Integer, Integer> b = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            int x = a[i];
+            int d = Math.min(1 + i, n - i);
+            if (!b.containsKey(x)) {
+                b.put(x, d);
+            } else {
+                b.put(x, Math.min(d, b.get(x)));
+            }
+        }
+        int ans = (int) Math.pow(10, 9);
+        for (int i = 0; i < n; i++) {
+            int x = a[i];
+            if (x != (k - x) && b.containsKey(k - x)) {
+                ans = Math.min(Math.max(b.get(x), b.get(k - x)), ans);
+            }
+        }
+        return ans;
+    }
+}","#Results:1, 10
+",False
+FIND_A_ROTATION_WITH_MAXIMUM_HAMMING_DISTANCE.java,python,java,"public int f_filled(int[] arr, int n) {
+    int[] brr = new int[2 * n + 1];
+    for (int i = 0; i < n; i++) {
+        brr[i] = arr[i];
+    }
+    for (int i = 0; i < n; i++) {
+        brr[n + i] = arr[i];
+    }
+    int maxHam = 0;
+    for (int i = 1; i < n; i++) {
+        int currHam = 0;
+        int k = 0;
+        for (int j = i; j < i + n; j++) {
+            if (brr[j] != arr[k]) {
+                currHam += 1;
+            }
+            k = k + 1;
+        }
+        if (currHam == n) {
+            return n;
+        }
+        maxHam = Math.max(maxHam, currHam);
+    }
+    return maxHam;
+}","[ERROR] COMPILATION ERROR : 
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/FIND_A_ROTATION_WITH_MAXIMUM_HAMMING_DISTANCE.java:[88,12] non-static method f_filled(int[],int) cannot be referenced from a static context
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project Eval: Compilation failure
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/FIND_A_ROTATION_WITH_MAXIMUM_HAMMING_DISTANCE.java:[88,12] non-static method f_filled(int[],int) cannot be referenced from a static context
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+",False
+FIND_INDEX_OF_AN_EXTRA_ELEMENT_PRESENT_IN_ONE_SORTED_ARRAY_1.java,python,java,"public static int f_filled(int[] arr1, int[] arr2, int n) {
+    int index = n;
+    int left = 0;
+    int right = n - 1;
+    while (left <= right) {
+        int mid = (left + right) / 2;
+        if (arr2[mid] == arr1[mid]) {
+            left = mid + 1;
+        } else {
+            index = mid;
+            right = mid - 1;
+        }
+    }
+    return index;
+}","#Results:10, 10
+",True
+FIND_SUM_NODES_GIVEN_PERFECT_BINARY_TREE_1.java,python,java,"import java.lang.Math;
+
+public class Solution {
+    public static int f_filled(int l) {
+        double leafNodeCount = Math.pow(2, l - 1);
+        double sumLastLevel = 0;
+        sumLastLevel = ((leafNodeCount * (leafNodeCount + 1)) / 2);
+        double sum = sumLastLevel * l;
+        return (int) sum;
+    }
+}","#Results:2, 10
+",False
+FIND_EQUAL_POINT_STRING_BRACKETS.java,python,java,"public class BalancedParentheses {
+    public static int f_filled(String str) {
+        int l = str.length();
+        int[] open = new int[l + 1];
+        int[] close = new int[l + 1];
+        int index = -1;
+        open[0] = 0;
+        close[l] = 0;
+        if (str.charAt(0) == '(') {
+            open[1] = 1;
+        }
+        if (str.charAt(l - 1) == ')') {
+            close[l - 1] = 1;
+        }
+        for (int i = 1; i < l; i++) {
+            if (str.charAt(i) == '(') {
+                open[i + 1] = open[i] + 1;
+            } else {
+                open[i + 1] = open[i];
+            }
+        }
+        for (int i = l - 2; i >= 0; i--) {
+            if (str.charAt(i) == ')') {
+                close[i] = close[i + 1] + 1;
+            } else {
+                close[i] = close[i + 1];
+            }
+        }
+        if (open[l] == 0) {
+            return l;
+        }
+        if (close[0] == 0) {
+            return 0;
+        }
+        for (int i = 0; i <= l; i++) {
+            if (open[i] == close[i]) {
+                index = i;
+            }
+        }
+        return index;
+    }
+}","#Results:10, 10
+",True
+STACK_PERMUTATIONS_CHECK_IF_AN_ARRAY_IS_STACK_PERMUTATION_OF_OTHER.java,python,java,"import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
+public class Main {
+    public static boolean f_filled(int[] ip, int[] op, int n) {
+        Queue<Integer> Input = new LinkedList<>();
+        for (int i = 0; i < n; i++) {
+            Input.add(ip[i]);
+        }
+        Queue<Integer> output = new LinkedList<>();
+        for (int i = 0; i < n; i++) {
+            output.add(op[i]);
+        }
+        Stack<Integer> tempStack = new Stack<>();
+        while (!Input.isEmpty()) {
+            int ele = Input.peek();
+            Input.poll();
+            if (ele == output.peek()) {
+                output.poll();
+                while (!tempStack.isEmpty()) {
+                    if (tempStack.peek() == output.peek()) {
+                        tempStack.pop();
+                        output.poll();
+                    } else {
+                        break;
+                    }
+                }
+            } else {
+                tempStack.push(ele);
+            }
+        }
+        return (Input.isEmpty() && tempStack.isEmpty());
+    }
+}","#Results:10, 10
+",True
+MARKOV_MATRIX.java,python,java,"public static boolean f_filled(int[][] m) {
+    for (int i = 0; i < m.length; i++) {
+        int sm = 0;
+        for (int j = 0; j < m[i].length; j++) {
+            sm = sm + m[i][j];
+        }
+        if (sm != 1) {
+            return false;
+        }
+    }
+    return true;
+}","[ERROR] COMPILATION ERROR : 
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/MARKOV_MATRIX.java:[55,31] incompatible types: double[][] cannot be converted to int[][]
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project Eval: Compilation failure
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/MARKOV_MATRIX.java:[55,31] incompatible types: double[][] cannot be converted to int[][]
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+",False
+FIND_SUM_NON_REPEATING_DISTINCT_ELEMENTS_ARRAY.java,python,java,"import java.util.HashSet;
+import java.util.Set;
+
+public class Solution {
+    public static int f_filled(int[] arr, int n) {
+        Set<Integer> s = new HashSet<>();
+        int sum = 0;
+        for (int i = 0; i < n; i++) {
+            if (!s.contains(arr[i])) {
+                s.add(arr[i]);
+            }
+        }
+        for (int i : s) {
+            sum += i;
+        }
+        return sum;
+    }
+}","#Results:10, 10
+",True
+PROGRAM_TO_FIND_REMAINDER_WITHOUT_USING_MODULO_OR_OPERATOR_1.java,python,java,"public static int f_filled(int num, int divisor) {
+    if (divisor == 0) {
+        return 0;
+    }
+    if (divisor < 0) {
+        divisor = -divisor;
+    }
+    if (num < 0) {
+        num = -num;
+    }
+    int i = 1;
+    int product = 0;
+    while (product <= num) {
+        product = divisor * i;
+        i += 1;
+    }
+    return num - (product - divisor);
+}","#Results:10, 10
+",True
+UNIQUE_CELLS_BINARY_MATRIX.java,python,java,"public int f_filled(int[][] mat, int n, int m) {
+    int[] rowsum = new int[n];
+    int[] colsum = new int[m];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            if (mat[i][j] != 0) {
+                rowsum[i] += 1;
+                colsum[j] += 1;
+            }
+        }
+    }
+    int uniquecount = 0;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            if (mat[i][j] != 0 && rowsum[i] == 1 && colsum[j] == 1) {
+                uniquecount += 1;
+            }
+        }
+    }
+    return uniquecount;
+}","[ERROR] COMPILATION ERROR : 
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/UNIQUE_CELLS_BINARY_MATRIX.java:[92,12] non-static method f_filled(int[][],int,int) cannot be referenced from a static context
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project Eval: Compilation failure
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/UNIQUE_CELLS_BINARY_MATRIX.java:[92,12] non-static method f_filled(int[][],int,int) cannot be referenced from a static context
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+",False
+BELL_NUMBERS_NUMBER_OF_WAYS_TO_PARTITION_A_SET.java,python,java,"public int f_filled(int n) {
+    int[][] bell = new int[n + 1][n + 1];
+    bell[0][0] = 1;
+    for (int i = 1; i <= n; i++) {
+        bell[i][0] = bell[i - 1][i - 1];
+        for (int j = 1; j <= i; j++) {
+            bell[i][j] = bell[i - 1][j - 1] + bell[i][j - 1];
+        }
+    }
+    return bell[n][0];
+}","[ERROR] COMPILATION ERROR : 
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/BELL_NUMBERS_NUMBER_OF_WAYS_TO_PARTITION_A_SET.java:[55,12] non-static method f_filled(int) cannot be referenced from a static context
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project Eval: Compilation failure
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/BELL_NUMBERS_NUMBER_OF_WAYS_TO_PARTITION_A_SET.java:[55,12] non-static method f_filled(int) cannot be referenced from a static context
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+",False
+FIND_ROTATION_COUNT_ROTATED_SORTED_ARRAY_1.java,python,java,"public class Solution {
+    public static int f_filled(int[] arr, int low, int high) {
+        if (high < low) {
+            return 0;
+        }
+        if (high == low) {
+            return low;
+        }
+        int mid = low + (high - low) / 2;
+        if (mid < high && arr[mid + 1] < arr[mid]) {
+            return (mid + 1);
+        }
+        if (mid > low && arr[mid] < arr[mid - 1]) {
+            return mid;
+        }
+        if (arr[high] > arr[mid]) {
+            return f_filled(arr, low, mid - 1);
+        }
+        return f_filled(arr, mid + 1, high);
+    }
+}","#Results:10, 10
+",True
+MINIMUM_TIME_WRITE_CHARACTERS_USING_INSERT_DELETE_COPY_OPERATION.java,python,java,"public int f_filled(int N, int insrt, int remov, int cpy) {
+    if (N == 0) {
+        return 0;
+    }
+    if (N == 1) {
+        return insrt;
+    }
+    int[] dp = new int[N + 1];
+    for (int i = 1; i <= N; i++) {
+        if (i % 2 == 0) {
+            dp[i] = Math.min(dp[i - 1] + insrt, dp[i / 2] + cpy);
+        } else {
+            dp[i] = Math.min(dp[i - 1] + insrt, dp[(i + 1) / 2] + cpy + remov);
+        }
+    }
+    return dp[N];
+}","[ERROR] COMPILATION ERROR : 
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/MINIMUM_TIME_WRITE_CHARACTERS_USING_INSERT_DELETE_COPY_OPERATION.java:[93,12] non-static method f_filled(int,int,int,int) cannot be referenced from a static context
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project Eval: Compilation failure
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/MINIMUM_TIME_WRITE_CHARACTERS_USING_INSERT_DELETE_COPY_OPERATION.java:[93,12] non-static method f_filled(int,int,int,int) cannot be referenced from a static context
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+",False
+FIND_POSITION_GIVEN_NUMBER_AMONG_NUMBERS_MADE_4_7.java,python,java,"int f_filled(String n) {
+    int i = 0;
+    int j = n.length();
+    int pos = 0;
+    while (i < j) {
+        if (n.charAt(i) == '4') {
+            pos = pos * 2 + 1;
+        }
+        if (n.charAt(i) == '7') {
+            pos = pos * 2 + 2;
+        }
+        i = i + 1;
+    }
+    return pos;
+}","[ERROR] COMPILATION ERROR : 
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/FIND_POSITION_GIVEN_NUMBER_AMONG_NUMBERS_MADE_4_7.java:[60,12] non-static method f_filled(java.lang.String) cannot be referenced from a static context
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project Eval: Compilation failure
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/FIND_POSITION_GIVEN_NUMBER_AMONG_NUMBERS_MADE_4_7.java:[60,12] non-static method f_filled(java.lang.String) cannot be referenced from a static context
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+",False
+FIND_DIFFERENCE_BETWEEN_SUMS_OF_TWO_DIAGONALS.java,python,java,"public static int f_filled(int[][] arr, int n) {
+    int d1 = 0;
+    int d2 = 0;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (i == j) {
+                d1 += arr[i][j];
+            }
+            if (i == n - j - 1) {
+                d2 += arr[i][j];
+            }
+        }
+    }
+    return Math.abs(d1 - d2);
+}","#Results:10, 10
+",True
+MOBILE_NUMERIC_KEYPAD_PROBLEM.java,python,java,"public static int f_filled(int[][] keypad, int n) {
+    if (keypad == null || n <= 0) {
+        return 0;
+    }
+    if (n == 1) {
+        return 10;
+    }
+    int[] odd = new int[10];
+    int[] even = new int[10];
+    int useOdd = 0;
+    int totalCount = 0;
+    for (int i = 0; i < 10; i++) {
+        odd[i] = 1;
+    }
+    for (int j = 2; j <= n; j++) {
+        useOdd = 1 - useOdd;
+        if (useOdd == 1) {
+            even[0] = odd[0] + odd[8];
+            even[1] = odd[1] + odd[2] + odd[4];
+            even[2] = odd[2] + odd[1] + odd[3] + odd[5];
+            even[3] = odd[3] + odd[2] + odd[6];
+            even[4] = odd[4] + odd[1] + odd[5] + odd[7];
+            even[5] = odd[5] + odd[2] + odd[4] + odd[8] + odd[6];
+            even[6] = odd[6] + odd[3] + odd[5] + odd[9];
+            even[7] = odd[7] + odd[4] + odd[8];
+            even[8] = odd[8] + odd[0] + odd[5] + odd[7] + odd[9];
+            even[9] = odd[9] + odd[6] + odd[8];
+        } else {
+            odd[0] = even[0] + even[8];
+            odd[1] = even[1] + even[2] + even[4];
+            odd[2] = even[2] + even[1] + even[3] + even[5];
+            odd[3] = even[3] + even[2] + even[6];
+            odd[4] = even[4] + even[1] + even[5] + even[7];
+            odd[5] = even[5] + even[2] + even[4] + even[8] + even[6];
+            odd[6] = even[6] + even[3] + even[5] + even[9];
+            odd[7] = even[7] + even[4] + even[8];
+            odd[8] = even[8] + even[0] + even[5] + even[7] + even[9];
+            odd[9] = even[9] + even[6] + even[8];
+        }
+    }
+    totalCount = 0;
+    if (useOdd == 1) {
+        for (int i = 0; i < 10; i++) {
+            totalCount += even[i];
+        }
+    } else {
+        for (int i = 0; i < 10; i++) {
+            totalCount += odd[i];
+        }
+    }
+    return totalCount;
+}","[ERROR] COMPILATION ERROR : 
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/MOBILE_NUMERIC_KEYPAD_PROBLEM.java:[145,31] incompatible types: char[][] cannot be converted to int[][]
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project Eval: Compilation failure
+[ERROR] /Users/parsayoussefpour/Desktop/MEng - Translator/Milestone 2/Eval/src/main/java/MOBILE_NUMERIC_KEYPAD_PROBLEM.java:[145,31] incompatible types: char[][] cannot be converted to int[][]
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+",False
+PROGRAM_FIND_SMALLEST_DIFFERENCE_ANGLES_TWO_PARTS_GIVEN_CIRCLE.java,python,java,"public static int f_filled(int[] arr, int n) {
+    int l = 0;
+    int _sum = 0;
+    int ans = 360;
+    for (int i = 0; i < n; i++) {
+        _sum += arr[i];
+        while (_sum >= 180) {
+            ans = Math.min(ans, 2 * Math.abs(180 - _sum));
+            _sum -= arr[l];
+            l += 1;
+        }
+        ans = Math.min(ans, 2 * Math.abs(180 - _sum));
+    }
+    return ans;
+}","#Results:10, 10
+",True
